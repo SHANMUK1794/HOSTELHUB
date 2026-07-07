@@ -1,21 +1,16 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-//  baseURL: "http://localhost:5000",
-   baseURL: "http://localhost:3000",
-
+  baseURL: import.meta.env.VITE_API_URL || "http://localhost:3000",
   headers: {
     "Content-Type": "application/json",
   },
-
   withCredentials: true,
 });
 
 // for form data for file input 
 export const axiosInstance2 = axios.create({
-  // baseURL: "http://localhost:5000",
-    baseURL: "http://localhost:3000",
-
+  baseURL: import.meta.env.VITE_API_URL || "http://localhost:3000",
   headers: {
     "Content-Type": "multipart/form-data",
   },

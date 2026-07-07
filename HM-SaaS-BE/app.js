@@ -68,8 +68,9 @@ app.use(helmet({
 app.use(
   cors({
     origin: [
-      "http://localhost:5173",           // 👈 THIS ALLOWS YOUR LOCAL LAPTOP TO CONNECT!
-    ],
+      "http://localhost:5173",
+      process.env.FRONTEND_URL, // Allows production Cloudflare Pages frontend URL
+    ].filter(Boolean),
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   })
