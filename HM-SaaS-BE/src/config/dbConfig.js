@@ -1,14 +1,11 @@
-// import dns from 'node:dns';
-// dns.setServers(['8.8.8.8', '1.1.1.1']);
-
-import mongoose from "mongoose";
+import prisma from "./prisma.js";
 
 export const connectDb = async () => {
   try {
-    const connect = await mongoose.connect(process.env.MONGODB_URI);
-    console.log(`MongoDB connected on host ${connect.connection.host}`);
+    await prisma.$connect();
+    console.log("PostgreSQL Database connected successfully via Prisma");
   } catch (error) {
-    console.log(`MongoDB connection failed`);
+    console.error("PostgreSQL Database connection failed:", error);
     process.exit(1);
   }
 };

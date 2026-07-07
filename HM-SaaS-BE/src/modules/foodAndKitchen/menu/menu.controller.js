@@ -1,5 +1,5 @@
 import menuService from "./menu.service.js";
-import mongoose from "mongoose";
+import mongoose from "../../../config/mongoose-compat.js";
 
 class MenuController {
   async createMenu(req, res) {

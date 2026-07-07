@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from "../../../config/mongoose-compat.js";
 import * as dailyExpenseRepo from "./expense.repository.js";
 import { buildCombinedFilter } from "../../../utils/filter.js";
 import ExcelJS from "exceljs";

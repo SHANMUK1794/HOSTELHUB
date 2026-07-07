@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from "../../config/mongoose-compat.js";
 import employee from "../employee/employee.model.js";
 
 const userschema = new mongoose.Schema({

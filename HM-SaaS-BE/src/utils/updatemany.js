@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from "../config/mongoose-compat.js";
 
 import room from "../modules/roomAndResidents/Room&Residence.model.js";
 import achievement from "../modules/achievement/achievement.model.js";

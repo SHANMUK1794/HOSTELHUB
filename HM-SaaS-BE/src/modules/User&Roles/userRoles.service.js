@@ -1,5 +1,5 @@
 import bcrypt from "bcryptjs";
-import mongoose from "mongoose";
+import mongoose from "../../config/mongoose-compat.js";
 import * as repo from "./userRoles.repository.js"; 
 
 const createError = (message, statusCode = 400) => {

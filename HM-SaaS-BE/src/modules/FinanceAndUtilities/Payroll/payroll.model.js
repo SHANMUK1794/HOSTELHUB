@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import mongoose from "mongoose";
+import mongoose from "../../../config/mongoose-compat.js";
 
 const payrollSchema = new Schema(
   {

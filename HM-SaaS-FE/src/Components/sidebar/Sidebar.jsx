@@ -3,6 +3,25 @@ import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { useTheme } from "../../hooks/ThemeContext";
+import {
+  LayoutDashboard,
+  FileText,
+  Home,
+  Utensils,
+  ClipboardCheck,
+  CalendarCheck,
+  Plane,
+  TrendingUp,
+  Users,
+  AlertTriangle,
+  Cake,
+  Boxes,
+  Award,
+  Trophy,
+  Trash2,
+  Menu,
+  X
+} from "lucide-react";
 
 const Sidebar = () => {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1024);
@@ -35,9 +54,7 @@ const Sidebar = () => {
   const allMenuItems = [
     {
       name: "Dashboard",
-      icon: "https://asset.techjose.com/Hostelos/sidebarimages/dashboard.png",
-      iconHover:
-        "https://asset.techjose.com/Hostelos/sidebarimages/dashboardh.png",
+      icon: LayoutDashboard,
       path:
         userRole?.toLowerCase() === "warden"
           ? "/DashboardWarden"
@@ -50,111 +67,85 @@ const Sidebar = () => {
     },
     {
       name: "Register",
-      icon: "https://asset.techjose.com/Hostelos/sidebarimages/register.png",
-      iconHover:
-        "https://asset.techjose.com/Hostelos/sidebarimages/registerh.png",
+      icon: FileText,
       path: "/StudentDetails",
       roles: ["admin", "warden"],
     },
     {
       name: "Rooms",
-      icon: "https://asset.techjose.com/Hostelos/sidebarimages/rooms.png",
-      iconHover: "https://asset.techjose.com/Hostelos/sidebarimages/roomsh.png",
+      icon: Home,
       path: "/RoomsAndResidents",
       roles: ["admin", "warden"],
     },
     {
       name: "Kitchen",
-      icon: "https://asset.techjose.com/Hostelos/sidebarimages/kitchen.png",
-      iconHover:
-        "https://asset.techjose.com/Hostelos/sidebarimages/kitchenh.png",
+      icon: Utensils,
       path: "/KitchenLanding",
       roles: ["chef", "admin", "staff"],
     },
     {
       name: "Staff Attendance",
-      icon: "https://asset.techjose.com/Hostelos/sidebarimages/attendance.png",
-      iconHover:
-        "https://asset.techjose.com/Hostelos/sidebarimages/attendanceh.png",
+      icon: ClipboardCheck,
       path: "/staffAttendance",
       roles: ["chef", "staff"],
     },
     {
       name: "Attendance",
-      icon: "https://asset.techjose.com/Hostelos/sidebarimages/attendance.png",
-      iconHover:
-        "https://asset.techjose.com/Hostelos/sidebarimages/attendanceh.png",
+      icon: CalendarCheck,
       path: "/Attendance",
       roles: ["admin", "warden", ""],
     },
     {
       name: "Vacation",
-      icon: "https://asset.techjose.com/Hostelos/sidebarimages/vacation.png",
-      iconHover:
-        "https://asset.techjose.com/Hostelos/sidebarimages/vacationh.png",
+      icon: Plane,
       path: "/Vacation",
       roles: ["admin", "warden"],
     },
     {
       name: "Finance",
-      icon: "https://asset.techjose.com/Hostelos/sidebarimages/finance.png",
-      iconHover:
-        "https://asset.techjose.com/Hostelos/sidebarimages/financeh.png",
+      icon: TrendingUp,
       path: "/FinanceAndUtilities",
       roles: ["admin", "warden", "chef"],
     },
     {
       name: "Users & Roles",
-      icon: "https://asset.techjose.com/Hostelos/sidebarimages/users.png",
-      iconHover: "https://asset.techjose.com/Hostelos/sidebarimages/usersh.png",
+      icon: Users,
       path: "/UsersAndRoles",
       roles: ["admin"],
     },
     {
       name: "Complaints",
-      icon: "https://asset.techjose.com/Hostelos/sidebarimages/complaints.png",
-      iconHover:
-        "https://asset.techjose.com/Hostelos/sidebarimages/complaintsh.png",
+      icon: AlertTriangle,
       path: "/Complaints",
       roles: ["admin", "warden", "chef", "staff"],
     },
     {
       name: "Birthdays",
-      icon: "https://asset.techjose.com/Hostelos/sidebarimages/birthday.png",
-      iconHover:
-        "https://asset.techjose.com/Hostelos/sidebarimages/birthdayh.png",
+      icon: Cake,
       path: "/Reminders",
       roles: ["admin", "warden"],
     },
     {
       name: "Store Room",
-      icon: "https://asset.techjose.com/Hostelos/sidebarimages/storeroom.png",
-      iconHover:
-        "https://asset.techjose.com/Hostelos/sidebarimages/storeroomh.png",
+      icon: Boxes,
       path: "/StoreRoom",
       roles: ["admin", "staff"],
     },
     {
       name: "Certificates",
-      icon: "https://asset.techjose.com/Hostelos/sidebarimages/certificates.png",
-      iconHover:
-        "https://asset.techjose.com/Hostelos/sidebarimages/certificatesh.png",
+      icon: Award,
       path: "/Certificates",
       roles: ["admin", "chef"],
     },
     {
       name: "Achievements",
-      icon: "https://asset.techjose.com/Hostelos/sidebarimages/achievement.png",
-      iconHover:
-        "https://asset.techjose.com/Hostelos/sidebarimages/achievementh.png",
+      icon: Trophy,
       path: "/Achievements",
       roles: ["admin", "warden"],
     },
     {
       name: "Recycle Bin",
-      icon: "https://asset.techjose.com/Hostelos/sidebarimages/recycle.png",
-      iconHover:
-        "https://asset.techjose.com/Hostelos/sidebarimages/recycleh.png",
+      icon: Trash2,
       path: "/recycleBin",
       roles: ["admin"],
     },
@@ -179,17 +170,14 @@ const Sidebar = () => {
     }
   };
 
-  const handleCollapse = () => {
-    if (isTabletMode || isMobile) {
-      setIsCollapsed(!isCollapsed);
-    }
-  };
-
   useEffect(() => {
-    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  const handleCollapse = () => {
+    setIsCollapsed(!isCollapsed);
+  };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -210,22 +198,22 @@ const Sidebar = () => {
     <div
       ref={sidebarRef}
       className={`
-    fixed top-0 left-0
-    ${!(isMobile && isCollapsed) ? "bottom-0 shadow-xl" : "bg-transparent"}
-    flex flex-col
-    transition-all duration-300 ease-in-out
-    z-[9999]
-
-    ${
-      isDesktop
-        ? "w-[220px] 2xl:w-[210px]"
-        : isCollapsed
-          ? isMobile
-            ? "w-auto h-auto"
-            : "w-[70px]"
-          : "w-[240px] h-full"
-    }
-  `}
+        fixed top-0 left-0
+        ${!(isMobile && isCollapsed) ? "bottom-0 shadow-xl" : "bg-transparent"}
+        flex flex-col
+        transition-all duration-300 ease-in-out
+        z-[9999]
+        border-r border-white/5
+        ${
+          isDesktop
+            ? "w-[220px] 2xl:w-[210px]"
+            : isCollapsed
+              ? isMobile
+                ? "w-auto h-auto"
+                : "w-[70px]"
+              : "w-[240px] h-full"
+        }
+      `}
       style={{ backgroundColor: "var(--theme-sidebar-bg)" }}
     >
       <nav className="mt-2 px-1 flex flex-col flex-1 overflow-y-auto overflow-x-hidden scrollbar-hide pb-4">
@@ -238,7 +226,7 @@ const Sidebar = () => {
           >
             <button
               onClick={handleCollapse}
-              className="flex items-center justify-center w-10 h-10 rounded-xl transition-all duration-300 active:scale-95"
+              className="flex items-center justify-center w-10 h-10 rounded-xl transition-all duration-300 active:scale-95 text-white/80 hover:text-white"
               onMouseEnter={(e) =>
                 (e.currentTarget.style.backgroundColor =
                   "rgba(255,255,255,0.15)")
@@ -247,15 +235,7 @@ const Sidebar = () => {
                 (e.currentTarget.style.backgroundColor = "transparent")
               }
             >
-              <img
-                src={
-                  isCollapsed
-                    ? "https://asset.techjose.com/Hostelos/sidebarimages/menu.png"
-                    : "https://asset.techjose.com/Hostelos/sidebarimages/menuclose.png"
-                }
-                alt="Toggle Sidebar"
-                className="w-5 h-5 brightness-0 invert transition-transform duration-300 hover:scale-110"
-              />
+              {isCollapsed ? <Menu size={20} /> : <X size={20} />}
             </button>
           </div>
         )}
@@ -281,12 +261,11 @@ const Sidebar = () => {
 
         {/* Menu Items */}
         {!(isMobile && isCollapsed) &&
-          menuItems.map((item) => (
-            <NavLink key={item.name} to={item.path} className="shrink-0">
-              {({ isActive }) => {
-                const showHoverIcon = isActive || hoveredItem === item.name;
-
-                return (
+          menuItems.map((item) => {
+            const Icon = item.icon;
+            return (
+              <NavLink key={item.name} to={item.path} className="shrink-0">
+                {({ isActive }) => (
                   <div
                     className="group relative text-[16px] 2xl:text-[15px] flex items-center gap-3 w-full mb-1 py-2 px-3 rounded-[10px] transition-colors duration-300 ease-in-out"
                     style={{
@@ -300,15 +279,7 @@ const Sidebar = () => {
                     onMouseEnter={() => setHoveredItem(item.name)}
                     onMouseLeave={() => setHoveredItem(null)}
                   >
-                    <img
-                      src={
-                        showHoverIcon && item.iconHover
-                          ? item.iconHover
-                          : item.icon
-                      }
-                      alt={item.name}
-                      className="w-7 h-7 2xl:w-5 2xl:h-5 brightness-0 invert"
-                    />
+                    <Icon className="w-5 h-5 2xl:w-4 2xl:h-4 text-white opacity-85 group-hover:opacity-100 transition-opacity" />
                     {!isCollapsed && (
                       <span
                         className="text-sm 2xl:text-[13px] font-medium"
@@ -333,10 +304,10 @@ const Sidebar = () => {
                       </span>
                     )}
                   </div>
-                );
-              }}
-            </NavLink>
-          ))}
+                )}
+              </NavLink>
+            );
+          })}
       </nav>
     </div>
   );

@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from "../../../config/mongoose-compat.js";
 
 const dueTrackerSchema = new mongoose.Schema(
   {

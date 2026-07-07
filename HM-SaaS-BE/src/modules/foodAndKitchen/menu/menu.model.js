@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from "../../../config/mongoose-compat.js";
 
 // 1. New schema that accepts objects instead of strings
 const DishItemSchema = new mongoose.Schema(

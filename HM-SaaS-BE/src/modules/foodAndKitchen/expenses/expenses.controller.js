@@ -1,7 +1,7 @@
 import expenseService from "./expenses.service.js";
 import expenseRepository from "./expenses.repository.js";
 import { buildDateRangeFilter } from "../../../utils/filter.js";
-import mongoose from "mongoose";
+import mongoose from "../../../config/mongoose-compat.js";
 
 class ExpenseController {
   async addItems(req, res) {
