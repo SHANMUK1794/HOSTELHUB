@@ -11,11 +11,9 @@ import { ThemeProvider } from "./hooks/ThemeContext";
 
 function AppInner() {
   const location = useLocation();
-
-  const hideSidebarRoutes = ["/", "/signup", "/reset", "/welcome", "/onboard", "/subscription"];
-  const hideHeaderRoutes = ["/", "/signup", "/reset", "/welcome", "/onboard", "/subscription"];
-  const publicPaths = ["/", "/signup", "/reset"];
-
+  const hideSidebarRoutes = ["/", "/login", "/signup", "/reset", "/welcome", "/onboard", "/subscription"];
+  const hideHeaderRoutes = ["/", "/login", "/signup", "/reset", "/welcome", "/onboard", "/subscription"];
+  const publicPaths = ["/", "/login", "/signup", "/reset"];
   const shouldHideSidebar = hideSidebarRoutes.includes(location.pathname);
   const shouldHideHeader = hideHeaderRoutes.includes(location.pathname);
 

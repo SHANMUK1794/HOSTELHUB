@@ -20,11 +20,10 @@ const ProtectedRoute = ({ children, allowedRoles = [] }) => {
 
   // Get user role from Redux or localStorage safely
   const role = user?.role?.toLowerCase() || localUser?.role?.toLowerCase();
-
   // 2. If user is not logged in
   if (!token) {
     // Pass the attempted location in state so you can redirect them back after login
-    return <Navigate to="/" state={{ from: location }} replace />;
+    return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
   // 3. If route is restricted and user lacks the required role
@@ -37,11 +36,10 @@ const ProtectedRoute = ({ children, allowedRoles = [] }) => {
     };
 
     // Redirect to their specific dashboard, or back to login if role is completely unknown
-    const fallbackPath = roleBasedRedirects[role] || "/";
+    const fallbackPath = roleBasedRedirects[role] || "/login";
 
     return <Navigate to={fallbackPath} replace />;
   }
-
   // Access granted
   return children;
 };
