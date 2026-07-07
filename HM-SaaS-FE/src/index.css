@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* --color-primaryLiteBg: #FFFFFF; */
+  --color-secondaryLiteBg: #EA6A12;
+  --color-sideBarLiteBg: hsl(242, 66%, 26%);
+  
+  --color-black: #000000;
+  --color-white: #FFFFFF;
+  --color-white2:#F5F7FA;
+  --color-red: #FF2020;
+  --color-green: #60f30b;
+  --color-liteGreen: #89E22A;
+  --color-violet: #7F00FF;
+  --color-liteBlue: #006AFF;
+  --color-darkBlue: #302D7F;   /* for button and blue text */
+  --color-liteBlack: #867E7E;   /* for text,black border and icons */
+  --color-liteBlack2:#BDB9B9;
+  --color-modalBg:#00000080;
+  --color-formbgcolor:#FBDBFE;
+  /* --color-tableheader:#800080; */
+  --color-tableheader:#EA6A12;
+  --color-tabledataBGcolor:white;
+}
+
+/* Hide scrollbar but keep scroll functionality */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE & Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
