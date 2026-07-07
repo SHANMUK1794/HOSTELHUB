@@ -3,6 +3,7 @@ import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { GoogleLogin } from '@react-oauth/google';
 import { toast } from "react-toastify";
+import { ArrowLeft, User, Mail, Lock, Eye, EyeOff } from "lucide-react";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -14,138 +15,173 @@ const Signup = () => {
     e.preventDefault();
     try {
       const response = await signup(formData);
-      toast.success(response?.message || "Signup Successfully");
+      toast.success(response?.message || "Signed Up Successfully");
+      navigate("/login");
     } catch (error) {
-      toast.error(error?.response?.data?.message || error.message || " something went wrong");
+      toast.error(error?.response?.data?.message || error.message || "Something went wrong");
     }
   };
 
   return (
-    <div className="relative min-h-screen w-full flex overflow-hidden bg-gray-50 font-sans">
-      <section className="hidden w-1/2 inset-0 z-0 relative lg:flex items-center justify-center lg:w-1/2 bg-gradient-to-br from-teal-800 to-indigo-950 lg:rounded-r-[350px] xl:rounded-r-[850px] shadow-[10px_0_30px_rgba(0,0,0,0.15)]">
-        <div className="text-center text-white px-8 max-w-lg z-10">
-          <h2 className="text-5xl font-extrabold tracking-wide mb-6 bg-gradient-to-r from-teal-300 to-indigo-300 bg-clip-text text-transparent">
+    <div className="relative min-h-screen w-full flex overflow-hidden bg-gradient-to-br from-slate-900 via-teal-950 to-indigo-950 text-white font-sans">
+      {/* Background Orbs */}
+      <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-teal-500/10 rounded-full filter blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-indigo-500/10 rounded-full filter blur-[120px] pointer-events-none" />
+
+      {/* Left Branding Panel */}
+      <section className="hidden w-1/2 inset-0 z-0 relative lg:flex items-center justify-center bg-white/5 border-r border-white/10 backdrop-blur-xl shadow-2xl">
+        <div className="text-center px-12 max-w-lg z-10 space-y-6">
+          <div 
+            onClick={() => navigate("/")}
+            className="mx-auto w-16 h-16 bg-gradient-to-r from-teal-500 to-emerald-500 text-slate-900 rounded-2xl flex items-center justify-center font-black text-3xl shadow-xl shadow-teal-500/20 cursor-pointer hover:scale-105 transition-transform"
+          >
+            H
+          </div>
+          <h2 className="text-5xl font-black tracking-wider bg-gradient-to-r from-white via-teal-200 to-teal-400 bg-clip-text text-transparent">
             HostelHub
           </h2>
-          <p className="text-teal-100 text-lg leading-relaxed mb-8">
-            The smart, modern way to manage rooms, residents, kitchen inventories, and payroll seamlessly.
+          <p className="text-slate-300 text-lg leading-relaxed">
+            Create your account today and launch your smart multi-tenant PG or hostel management workspace.
           </p>
-          <div className="flex justify-center gap-2">
-            <div className="w-3 h-3 bg-teal-400 rounded-full animate-bounce delay-75"></div>
-            <div className="w-3 h-3 bg-teal-300 rounded-full animate-bounce delay-150"></div>
-            <div className="w-3 h-3 bg-teal-200 rounded-full animate-bounce delay-225"></div>
+          <div className="flex justify-center gap-2.5 pt-4">
+            <div className="w-3 h-3 bg-teal-400 rounded-full animate-pulse" />
+            <div className="w-3 h-3 bg-teal-300 rounded-full animate-pulse delay-150" />
+            <div className="w-3 h-3 bg-teal-200 rounded-full animate-pulse delay-300" />
           </div>
         </div>
       </section>
 
-      <section className="relative z-10 flex w-full lg:w-1/2 flex-col items-center justify-center p-4 sm:p-8">
-        <div className="w-full max-w-[480px]">
-          <h1 className="text-3xl sm:text-4xl font-bold text-black mb-6 text-center drop-shadow-md lg:drop-shadow-none">
-            SIGN UP
-          </h1>
+      {/* Right Signup Panel */}
+      <section className="relative z-10 flex w-full lg:w-1/2 flex-col items-center justify-center p-6 sm:p-12">
+        <div className="w-full max-w-[440px] space-y-6">
+          {/* Header */}
+          <div className="text-center space-y-2 relative">
+            <button 
+              onClick={() => navigate("/")}
+              className="absolute left-0 top-1/2 -translate-y-1/2 p-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-teal-300 hover:text-white transition-all cursor-pointer"
+              title="Back to home"
+            >
+              <ArrowLeft size={18} />
+            </button>
+            <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+              Create Account
+            </h1>
+            <p className="text-sm text-slate-400">
+              Join HostelHub today.
+            </p>
+          </div>
 
+          {/* Form Card */}
           <form
             onSubmit={handleSubmit}
-            className="bg-[#555555]/10 lg:bg-[#555555]/5 backdrop-blur-md border border-white/40 shadow-[0_8px_32px_rgba(0,0,0,0.1)] rounded-[30px] p-6 sm:p-8 flex flex-col space-y-5"
+            className="bg-white/5 border border-white/10 backdrop-blur-xl shadow-2xl rounded-3xl p-6 sm:p-8 flex flex-col space-y-5"
           >
             {/* Username Field */}
-            <div className="flex flex-col">
-              <label
-                htmlFor="username"
-                className="text-[15px] font-semibold mb-1.5 text-teal-800"
-              >
+            <div className="flex flex-col space-y-1.5">
+              <label htmlFor="username" className="text-sm font-semibold text-teal-300">
                 Username
               </label>
-              <input
-                type="text"
-                id="username"
-                name="username"
-                placeholder="Enter Your Name"
-                value={formData.username}
-                onChange={(e) =>
-                  setFormData({ ...formData, username: e.target.value })
-                }
-                required
-                className="w-full h-[48px] sm:h-[50px] rounded-[10px] border border-gray-400 bg-white/50 text-black placeholder-gray-500 px-4 focus:outline-none focus:border-teal-600 focus:ring-1 focus:ring-teal-600 transition-all duration-200"
-              />
+              <div className="relative">
+                <User className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+                <input
+                  type="text"
+                  id="username"
+                  name="username"
+                  placeholder="John Doe"
+                  value={formData.username}
+                  onChange={(e) =>
+                    setFormData({ ...formData, username: e.target.value })
+                  }
+                  required
+                  className="w-full h-12 pl-11 pr-4 rounded-xl border border-white/10 bg-white/5 text-white placeholder-slate-400 focus:outline-none focus:border-teal-500 focus:ring-4 focus:ring-teal-500/20 transition-all duration-200"
+                />
+              </div>
             </div>
 
             {/* Email Field */}
-            <div className="flex flex-col">
-              <label
-                htmlFor="email"
-                className="text-[15px] font-semibold mb-1.5 text-teal-800"
-              >
-                Email
+            <div className="flex flex-col space-y-1.5">
+              <label htmlFor="email" className="text-sm font-semibold text-teal-300">
+                Email Address
               </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Enter Your Email"
-                value={formData.email}
-                onChange={(e) =>
-                  setFormData({ ...formData, email: e.target.value })
-                }
-                required
-                className="w-full h-[48px] sm:h-[50px] rounded-[10px] border border-gray-400 bg-white/50 text-black placeholder-gray-500 px-4 focus:outline-none focus:border-teal-600 focus:ring-1 focus:ring-teal-600 transition-all duration-200"
-              />
+              <div className="relative">
+                <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="name@company.com"
+                  value={formData.email}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
+                  required
+                  className="w-full h-12 pl-11 pr-4 rounded-xl border border-white/10 bg-white/5 text-white placeholder-slate-400 focus:outline-none focus:border-teal-500 focus:ring-4 focus:ring-teal-500/20 transition-all duration-200"
+                />
+              </div>
             </div>
 
             {/* Password Field */}
-            <div className="flex flex-col">
-              <label
-                htmlFor="password"
-                className="text-[15px] font-semibold mb-1.5 text-teal-800"
-              >
+            <div className="flex flex-col space-y-1.5">
+              <label htmlFor="password" className="text-sm font-semibold text-teal-300">
                 Password
               </label>
-              <input
-                type={showPassword ? "text" : "password"}
-                id="password"
-                name="password"
-                placeholder="Enter Password"
-                value={formData.password}
-                onChange={(e) =>
-                  setFormData({ ...formData, password: e.target.value })
-                }
-                required
-                className="w-full h-[48px] sm:h-[50px] rounded-[10px] border border-gray-400 bg-white/50 text-black placeholder-gray-500 px-4 focus:outline-none focus:border-teal-600 focus:ring-1 focus:ring-teal-600 transition-all duration-200"
-              />
+              <div className="relative">
+                <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+                <input
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  name="password"
+                  placeholder="••••••••"
+                  value={formData.password}
+                  onChange={(e) =>
+                    setFormData({ ...formData, password: e.target.value })
+                  }
+                  required
+                  className="w-full h-12 pl-11 pr-11 rounded-xl border border-white/10 bg-white/5 text-white placeholder-slate-400 focus:outline-none focus:border-teal-500 focus:ring-4 focus:ring-teal-500/20 transition-all duration-200"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white transition-colors"
+                >
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
+              </div>
 
               {/* Password Helpers */}
-              <div className="flex justify-between items-center mt-3">
+              <div className="flex justify-between items-center pt-2">
                 <label className="flex items-center gap-2 cursor-pointer group">
                   <input
                     type="checkbox"
                     checked={showPassword}
                     onChange={() => setShowPassword(!showPassword)}
-                    className="w-4 h-4 rounded border-gray-400 text-teal-600 focus:ring-teal-600 cursor-pointer"
+                    className="w-4 h-4 rounded border-white/10 bg-white/5 text-teal-600 focus:ring-teal-500 focus:ring-offset-0 cursor-pointer"
                   />
-                  <span className="text-[14px] font-medium text-gray-600 group-hover:text-black transition-colors">
-                    Show password
+                  <span className="text-xs font-semibold text-slate-400 group-hover:text-slate-200 transition-colors">
+                    Show Password
                   </span>
                 </label>
                 <button
                   onClick={() => navigate("/reset")}
                   type="button"
-                  className="text-[14px] font-semibold text-teal-800 hover:underline"
+                  className="text-xs font-semibold text-teal-300 hover:text-teal-200 hover:underline"
                 >
-                  Reset password
+                  Forgot Password?
                 </button>
               </div>
             </div>
 
             {/* Divider */}
-            <div className="flex items-center gap-4 py-2 mt-2">
-              <div className="h-[1px] flex-1 bg-gray-400/60" />
-              <span className="whitespace-nowrap text-[13px] font-medium text-gray-500">
-                Or Continue with
+            <div className="flex items-center gap-4 py-1">
+              <div className="h-[1px] flex-1 bg-white/10" />
+              <span className="whitespace-nowrap text-xs font-semibold text-slate-400">
+                Or Continue With
               </span>
-              <div className="h-[1px] flex-1 bg-gray-400/60" />
+              <div className="h-[1px] flex-1 bg-white/10" />
             </div>
 
-            <div className="flex items-center justify-center gap-3">
+            {/* Google OAuth */}
+            <div className="flex items-center justify-center">
               <GoogleLogin
                 onSuccess={async (credentialResponse) => {
                   try {
@@ -155,41 +191,43 @@ const Signup = () => {
                   }
                 }}
                 onError={() => {
-                  console.log("Google Login Failed popup closed or failed");
+                  console.log("Google Signup Failed");
                 }}
                 shape="rectangular"
                 size="large"
+                theme="filled_dark"
                 text="continue_with"
                 width="100%"
               />
             </div>
 
-            {/* Sign In Button */}
-            <div className="mt-4">
+            {/* Sign Up Button */}
+            <div className="pt-2">
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full h-[50px] font-[Poppins] bg-teal-600 text-white font-semibold text-[16px] rounded-[10px] shadow-md hover:bg-teal-700 transition-colors disabled:opacity-70 flex justify-center items-center"
+                className="w-full h-12 bg-gradient-to-r from-teal-500 to-emerald-500 text-slate-900 font-extrabold rounded-xl shadow-lg shadow-teal-500/10 hover:shadow-teal-400/20 hover:scale-[1.01] transition-all duration-300 disabled:opacity-70 flex justify-center items-center active:scale-95"
               >
-                {isLoading ? "Loading..." : "Signup"}
+                {isLoading ? "Signing Up..." : "Sign Up"}
               </button>
             </div>
 
-            {/* Login Account Link */}
-            <div className="text-center text-[13.5px] text-gray-600 mt-2">
-              Already Have an Account ?{" "}
-              <span
+            {/* Account Link */}
+            <div className="text-center text-xs text-slate-400 mt-2">
+              Already have an account?{" "}
+              <button
+                type="button"
                 onClick={() => navigate("/login")}
-                className="font-bold text-teal-800 hover:underline underline-offset-2 ml-1 cursor-pointer"
+                className="font-bold text-teal-300 hover:text-teal-200 hover:underline ml-1 cursor-pointer"
               >
                 Login
-              </span>
+              </button>
             </div>
 
             {/* Error Message */}
             {error && (
-              <p className="text-red-500 text-center text-[14px] font-medium bg-red-50/80 p-2 rounded-lg">
-                {error.response?.data?.message || "Wrong Credentials"}
+              <p className="text-red-400 text-center text-xs font-semibold bg-red-500/10 border border-red-500/20 p-2.5 rounded-xl">
+                {error.response?.data?.message || "Failed to create account. Please try again."}
               </p>
             )}
           </form>
