@@ -115,7 +115,7 @@ const Reset = () => {
               className="bg-white/60 lg:bg-[#555555]/5 backdrop-blur-md border border-white/40 shadow-[0_8px_32px_rgba(0,0,0,0.1)] rounded-[30px] p-6 sm:p-8 flex flex-col space-y-5"
             >
               <span
-                onClick={() => navigate("/")}
+                onClick={() => navigate("/login")}
                 className="absolute top-5 left-5 text-2xl text-[#757575] cursor-pointer"
               >
                 <MdOutlineArrowBackIosNew />
@@ -175,7 +175,7 @@ const Reset = () => {
 
               <button
                 className="text-[#2563EB] hover:underline text-[20px]"
-                onClick={() => navigate("/")}
+                onClick={() => navigate("/login")}
               >
                 Back to Login
               </button>
@@ -256,7 +256,7 @@ const Reset = () => {
 
               <button
                 className="text-[#2563EB] text-[20px] hover:underline"
-                onClick={() => navigate("/")}
+                onClick={() => navigate("/login")}
               >
                 Back to Login
               </button>
@@ -357,7 +357,7 @@ const Reset = () => {
             </div>
             <div className="w-[400px] absolute bottom-10">
               <button
-                onClick={() => (navigate("/"), step(1))}
+                onClick={() => (navigate("/login"), setStep(1))}
                 className="w-full py-2 bg-[#263765] text-white font-medium gap-10 text-[20px] rounded-[10px] shadow-md hover:bg-[#1a2546] disabled:opacity-70"
               >
                 Back to Login

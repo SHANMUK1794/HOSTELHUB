@@ -135,7 +135,7 @@ const Header = () => {
     setShowLogoutPopup(false);
     queryClient.clear();
     dispatch(logout());
-    navigate("/");
+    navigate("/login");
   };
 
   // ── Add branch ──

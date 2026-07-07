@@ -11,17 +11,19 @@ import FinanceAndUtilities from "../Components/finance&Utilities/FinanceAndUtili
 import EBData from "../Components/finance&Utilities/paymentManagement/EBData";
 import RoomRent from "../Components/finance&Utilities/paymentManagement/RoomRent";
 import Payroll from "../Components/finance&Utilities/payrollManagement/Payroll";
-// new kitchen landing page and its side bar components
 import KitchenLanding from "../Components/food_and_kitchen/KitchenLanding";
 import FoodAndKitchen from "../Components/food_and_kitchen/FoodAndKitchen";
 import KitchenExpenses from "../Components/food_and_kitchen/foodAndKitchenSideBar/kitchenExpenses/KitchenExpenses";
 import KitchenInventory from "../Components/food_and_kitchen/foodAndKitchenSideBar/kitchenInventory/KitchenInventory";
 import KitchenMenu from "../Components/food_and_kitchen/foodAndKitchenSideBar/kitchenMenu/KitchenMenu";
+
 import Header from "../Components/Header/Header";
 import Login from "../Components/login&signup/Login";
 import Signup from "../Components/login&signup/Signup";
 import Reset from "../Components/login&signup/Reset";
 import Registration from "../Components/register/Registration";
+import LandingPage from "../Components/login&signup/LandingPage";
+
 import StudentDetails from "../Components/register/StudentDetails";
 import StudentUpdateDetailForm from "../Components/register/StudentUpdateDetailForm";
 import Reminders from "../Components/reminders/Reminders";
@@ -59,11 +61,15 @@ import Settings from "../Components/settings/Settings";
 
 
 
-
 export const route1 = [
   {
     id: 1,
     path: "/",
+    element: <LandingPage />,
+  },
+  {
+    id: 102,
+    path: "/login",
     element: (
       <PublicRoute>
         <Login />
