@@ -202,11 +202,9 @@ if (Object.keys(validationErrors).length) {
               border: "1px solid var(--theme-accent)",
             }}
           >
-            <img
-              src={"https://asset.techjose.com/Hostelos/backarrow.png"}
-              alt="Back"
-              className="w-5 h-5 object-contain"
-            />
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-gray-600 hover:text-black cursor-pointer transition-all duration-200">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+</svg>
           </button>
 
           <h2
@@ -223,11 +221,11 @@ if (Object.keys(validationErrors).length) {
             Stay Details
           </p>
 
-          <img
-            src={"https://asset.techjose.com/Hostelos/register.png"}
-            alt="stayUpdate"
-            className="w-[500px] h-[400px] object-contain mt-6 max-[1024px]:w-[420px] max-[1024px]:h-[340px] max-[769px]:w-[300px] max-[769px]:h-[240px] max-[426px]:w-[220px] max-[426px]:h-[180px]"
-          />
+          <div className="mx-auto w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-4">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-10 h-10">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+  </svg>
+</div>
         </div>
 
         {/* FORM SECTION */}

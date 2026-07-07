@@ -1,4 +1,4 @@
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaEdit, FaEye, FaTrash } from "react-icons/fa";
 import { PlusIcon } from "@heroicons/react/24/solid";
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -411,45 +411,32 @@ const StudentDetails = () => {
                         ₹ {Number(studentData?.Deposit || 0).toLocaleString()}
                       </td>
 
-                      {/* ACTION */}
                       <td className="p-2">
-                        <div className="flex gap-3 justify-center items-center">
-                          <img
-                            src={
-                              "https://asset.techjose.com/Hostelos/tableedit.png"
-                            }
-                            alt="Edit"
+                        <div className="flex gap-3.5 justify-center items-center">
+                          <FaEdit
                             title="Edit student details"
                             onClick={() => {
                               if (!studentData?._id) return;
                               dispatch(setEditId(studentData._id));
                               navigate("/StudentUpdateDetailForm");
                             }}
-                            className="w-4 h-4 cursor-pointer object-contain hover:scale-110 transition-all duration-200"
+                            className="w-4.5 h-4.5 text-teal-600 hover:text-teal-800 cursor-pointer hover:scale-110 transition-all duration-200"
                           />
-                          <img
-                            src={
-                              "https://asset.techjose.com/Hostelos/tableview.png"
-                            }
-                            alt="View"
+                          <FaEye
                             title="Student Details"
                             onClick={() => {
                               setSelectedStudentId(studentData?._id);
                               setIsOpenRoomInfo(true);
                             }}
-                            className="w-5 h-5 cursor-pointer object-contain hover:scale-110 transition-all duration-200"
+                            className="w-4.5 h-4.5 text-indigo-600 hover:text-indigo-800 cursor-pointer hover:scale-110 transition-all duration-200"
                           />
-                          <img
-                            src={
-                              "https://asset.techjose.com/Hostelos/tabledelete.png"
-                            }
-                            alt="Delete"
+                          <FaTrash
                             title="Delete Student"
                             onClick={() => {
                               setSelectedId(studentData?._id);
                               setIsOpenDelete(true);
                             }}
-                            className="w-5 h-5 cursor-pointer object-contain hover:scale-110 transition-all duration-200"
+                            className="w-4.5 h-4.5 text-red-600 hover:text-red-800 cursor-pointer hover:scale-110 transition-all duration-200"
                           />
                         </div>
                       </td>

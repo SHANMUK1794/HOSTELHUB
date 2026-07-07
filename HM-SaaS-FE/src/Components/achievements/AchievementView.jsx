@@ -34,7 +34,7 @@ const AchievementView = () => {
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
   const [currentPhoto, setCurrentPhoto] = useState(
     liveAchievement?.photo ||
-      "https://asset.techjose.com/Hostelos/images/Achievementuser.png",
+      "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>",
   );
 
   useEffect(() => {
@@ -59,9 +59,9 @@ const AchievementView = () => {
     if (
       !path ||
       path === "undefined" ||
-      path === "https://asset.techjose.com/Hostelos/images/Achievementuser.png"
+      path === "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>"
     )
-      return "https://asset.techjose.com/Hostelos/images/Achievementuser.png";
+      return "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>";
     if (
       path.startsWith("http") ||
       path.startsWith("blob:") ||
@@ -71,7 +71,7 @@ const AchievementView = () => {
 
     const BASE_URL =
       axiosInstance.defaults.baseURL ||
-      "https://api-techjose-hostelos.techjose.com";
+      "http://localhost:5000";
     const cleanBase = BASE_URL.endsWith("/") ? BASE_URL.slice(0, -1) : BASE_URL;
     const cleanPath = path.startsWith("/") ? path : `/${path}`;
 
@@ -80,7 +80,7 @@ const AchievementView = () => {
 
   const isDefaultPhoto =
     currentPhoto ===
-    "https://asset.techjose.com/Hostelos/images/Achievementuser.png";
+    "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>";
 
   return (
     <div
@@ -168,7 +168,7 @@ const AchievementView = () => {
             >
               <img
                 className="w-5 h-5 sm:w-6 sm:h-6 filter brightness-0 invert"
-                src="https://asset.techjose.com/Hostelos/achievementupload.png"
+                src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>"
                 alt="upload"
               />
               Upload image
@@ -181,7 +181,7 @@ const AchievementView = () => {
             setIsUploadFile={setIsUploadModalOpen}
             currentPhoto={currentPhoto}
             defaultPlaceholder={
-              "https://asset.techjose.com/Hostelos/images/Achievementuser.png"
+              "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>"
             }
             onUploadSuccess={handleImageSuccess}
             achieveData={liveAchievement}

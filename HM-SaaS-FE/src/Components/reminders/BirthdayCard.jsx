@@ -43,7 +43,7 @@ const BirthdayCard = ({
       {isToday && (
         <div className="absolute top-0 left-0 w-full z-20">
           <img
-            src="https://asset.techjose.com/Hostelos/remindersimages/flags.png"
+            src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1zM4 22v-7'/></svg>"
             alt="flags"
             className="w-full h-[38px] object-cover"
           />
@@ -53,7 +53,7 @@ const BirthdayCard = ({
       {/* BALLOONS */}
       {isToday && (
         <img
-          src="https://asset.techjose.com/Hostelos/remindersimages/baloon.png"
+          src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 0v8'/></svg>"
           alt="balloons"
           className="absolute top-[-44px] right-[-12px] w-[105px] object-contain z-20 pointer-events-none"
         />

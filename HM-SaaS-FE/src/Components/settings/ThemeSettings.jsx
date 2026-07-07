@@ -54,23 +54,7 @@ const PRESET_THEMES = [
       fontSize: { ...defaultTheme.fontSize },
       fontFamily: { ...defaultTheme.fontFamily },
       darkMode: false,
-      images: {
-        birthday:
-          "https://asset.techjose.com/Hostelos/NewImages/DashboardImages/CakeBlue.png",
-        complaints:
-          "https://asset.techjose.com/Hostelos/NewImages/DashboardImages/ComplaintsBlue.png",
-        certificates:
-          "https://asset.techjose.com/Hostelos/NewImages/DashboardImages/CertificateBlue.png",
-        kitchen:
-          "https://asset.techjose.com/Hostelos/NewImages/DashboardImages/KitchenBlue.png",
-        storeRoom:
-          "https://asset.techjose.com/Hostelos/NewImages/DashboardImages/StoreRoomBlue.png",
-        mail: "https://asset.techjose.com/Hostelos/NewImages/BlueMail.png",
-        kitchenLanding:
-          "https://asset.techjose.com/Hostelos/NewImages/Bluebro.png",
-        notification:
-          "https://asset.techjose.com/Hostelos/Toast/BlueNotification.png",
-      },
+      images: { ...defaultTheme.images },
     },
   },
   {
@@ -114,21 +98,7 @@ const PRESET_THEMES = [
       fontSize: { ...defaultTheme.fontSize },
       fontFamily: { ...defaultTheme.fontFamily },
       darkMode: false,
-      images: {
-        birthday: "https://asset.techjose.com/Hostelos/dasboardImg/cake.png",
-        complaints:
-          "https://asset.techjose.com/Hostelos/dasboardImg/clipboard.png",
-        certificates:
-          "https://asset.techjose.com/Hostelos/dasboardImg/fassai.png",
-        kitchen:
-          "https://asset.techjose.com/Hostelos/dasboardImg/kitchenpot.png",
-        storeRoom: "https://asset.techjose.com/Hostelos/dasboardImg/store.png",
-        mail: "https://asset.techjose.com/Hostelos/Birthday-Reminders/Mail-sent.png",
-        kitchenLanding:
-          "https://asset.techjose.com/Hostelos/Kitchen/loading-time-image.png",
-        notification:
-          "https://asset.techjose.com/Hostelos/Header/Notification.png",
-      },
+      images: { ...defaultTheme.images },
     },
   },
   {
@@ -166,29 +136,13 @@ const PRESET_THEMES = [
       iconColor: "#1B2D5B",
       accent: "#1B2D5B",
       accentHover: "#102040",
-      logo: "https://asset.techjose.com/Hostelos/SidebarHeader.png",
-      bannerImage: "https://asset.techjose.com/Hostelos/dasboardImg/banner.jpg",
-      heroImage: "https://asset.techjose.com/Hostelos/dasboardImg/banner.jpg",
+      logo: "HostelHub",
+      bannerImage: "",
+      heroImage: "",
       fontSize: { ...defaultTheme.fontSize },
       fontFamily: { ...defaultTheme.fontFamily },
       darkMode: false,
-      images: {
-        birthday:
-          "https://asset.techjose.com/Hostelos/NewImages/DashboardImages/CakeBlue.png",
-        complaints:
-          "https://asset.techjose.com/Hostelos/NewImages/DashboardImages/ComplaintsBlue.png",
-        certificates:
-          "https://asset.techjose.com/Hostelos/NewImages/DashboardImages/CertificateBlue.png",
-        kitchen:
-          "https://asset.techjose.com/Hostelos/NewImages/DashboardImages/KitchenBlue.png",
-        storeRoom:
-          "https://asset.techjose.com/Hostelos/NewImages/DashboardImages/StoreRoomBlue.png",
-        mail: "https://asset.techjose.com/Hostelos/NewImages/BlueMail.png",
-        kitchenLanding:
-          "https://asset.techjose.com/Hostelos/NewImages/Bluebro.png",
-        notification:
-          "https://asset.techjose.com/Hostelos/Toast/BlueNotification.png",
-      },
+      images: { ...defaultTheme.images },
     },
   },
   {
@@ -226,29 +180,13 @@ const PRESET_THEMES = [
       iconColor: "#3A5FA0",
       accent: "#3A5FA0",
       accentHover: "#2A4A88",
-      logo: "https://asset.techjose.com/Hostelos/SidebarHeader.png",
-      bannerImage: "https://asset.techjose.com/Hostelos/dasboardImg/banner.jpg",
-      heroImage: "https://asset.techjose.com/Hostelos/dasboardImg/banner.jpg",
+      logo: "HostelHub",
+      bannerImage: "",
+      heroImage: "",
       fontSize: { ...defaultTheme.fontSize },
       fontFamily: { ...defaultTheme.fontFamily },
       darkMode: false,
-      images: {
-        birthday:
-          "https://asset.techjose.com/Hostelos/NewImages/DashboardImages/CakeBlue.png",
-        complaints:
-          "https://asset.techjose.com/Hostelos/NewImages/DashboardImages/ComplaintsBlue.png",
-        certificates:
-          "https://asset.techjose.com/Hostelos/NewImages/DashboardImages/CertificateBlue.png",
-        kitchen:
-          "https://asset.techjose.com/Hostelos/NewImages/DashboardImages/KitchenBlue.png",
-        storeRoom:
-          "https://asset.techjose.com/Hostelos/NewImages/DashboardImages/StoreRoomBlue.png",
-        mail: "https://asset.techjose.com/Hostelos/NewImages/BlueMail.png",
-        kitchenLanding:
-          "https://asset.techjose.com/Hostelos/NewImages/Bluebro.png",
-        notification:
-          "https://asset.techjose.com/Hostelos/Toast/BlueNotification.png",
-      },
+      images: { ...defaultTheme.images },
     },
   },
   {
@@ -286,29 +224,13 @@ const PRESET_THEMES = [
       iconColor: "#1E4D5C",
       accent: "#1E4D5C",
       accentHover: "#153845",
-      logo: "https://asset.techjose.com/Hostelos/SidebarHeader.png",
-      bannerImage: "https://asset.techjose.com/Hostelos/dasboardImg/banner.jpg",
-      heroImage: "https://asset.techjose.com/Hostelos/dasboardImg/banner.jpg",
+      logo: "HostelHub",
+      bannerImage: "",
+      heroImage: "",
       fontSize: { ...defaultTheme.fontSize },
       fontFamily: { ...defaultTheme.fontFamily },
       darkMode: false,
-      images: {
-        birthday:
-          "https://asset.techjose.com/Hostelos/NewImages/DashboardImages/CakeBlue.png",
-        complaints:
-          "https://asset.techjose.com/Hostelos/NewImages/DashboardImages/ComplaintsBlue.png",
-        certificates:
-          "https://asset.techjose.com/Hostelos/NewImages/DashboardImages/CertificateBlue.png",
-        kitchen:
-          "https://asset.techjose.com/Hostelos/NewImages/DashboardImages/KitchenBlue.png",
-        storeRoom:
-          "https://asset.techjose.com/Hostelos/NewImages/DashboardImages/StoreRoomBlue.png",
-        mail: "https://asset.techjose.com/Hostelos/NewImages/BlueMail.png",
-        kitchenLanding:
-          "https://asset.techjose.com/Hostelos/NewImages/Bluebro.png",
-        notification:
-          "https://asset.techjose.com/Hostelos/Toast/BlueNotification.png",
-      },
+      images: { ...defaultTheme.images },
     },
   },
 ];

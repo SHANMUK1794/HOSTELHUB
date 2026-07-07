@@ -52,7 +52,7 @@ const ViewDetails = ({ selectedRoom, onClose }) => {
               <div className="flex flex-col gap-1 text-liteBlack text-[14px] w-full">
                 <div className="flex gap-2 items-center break-words">
                   <img
-                    src={"https://asset.techjose.com/Hostelos/telephoneIcon.png"}
+                    src={"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z'/></svg>"}
                     alt="telephone icon"
                     className="w-4 h-4"
                   />
@@ -63,7 +63,7 @@ const ViewDetails = ({ selectedRoom, onClose }) => {
                   className="flex gap-2 items-center break-words max-w-full pr-4"
                   style={{ paddingRight: "1rem" }}
                 >
-                  <img src={"https://asset.techjose.com/Hostelos/idIcon.png"} alt="id icon" className="w-4 h-4" />
+                  <img src={"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='4' width='18' height='16' rx='2'/><path d='M7 9h10M7 13h10M7 17h6'/></svg>"} alt="id icon" className="w-4 h-4" />
                   <p className="break-words max-w-full">{resident.AddharNumber}</p>
                 </div>
               </div>

@@ -2,7 +2,7 @@ import React, { useState, useMemo } from "react";
 import ResidentStatusModal from "../ResidentsStatusModal";
 import { useSelector } from "react-redux";
 import { useRoomsResidents } from "../../../hooks/useRoomsResident";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaEdit, FaTrash } from "react-icons/fa";
 import DatePicker from "../../common_components/DatePicker";
 import { PlusIcon } from "@heroicons/react/24/solid";
 import usePG, { useDeletePG, useDeactivatePG } from "../../../hooks/usePGData";
@@ -417,29 +417,22 @@ function RegisterPG() {
                           ₹ {Number(item?.Rent || 0).toLocaleString()}
                         </td>
 
-                        {/* ACTION */}
                         <td className="p-2">
-                          <div className="flex gap-3 justify-center items-center">
-                            <img
-                              src={
-                                "https://asset.techjose.com/Hostelos/tableedit.png"
-                              }
-                              alt="Edit"
+                          <div className="flex gap-3.5 justify-center items-center">
+                            <FaEdit
+                              title="Edit PG details"
                               onClick={() =>
                                 navigate(`/PgUpdateForm/${item._id}`)
                               }
-                              className="w-4 h-4 cursor-pointer object-contain hover:scale-110 transition-all duration-200"
+                              className="w-4.5 h-4.5 text-teal-600 hover:text-teal-800 cursor-pointer hover:scale-110 transition-all duration-200"
                             />
-                            <img
-                              src={
-                                "https://asset.techjose.com/Hostelos/tabledelete.png"
-                              }
-                              alt="Delete"
+                            <FaTrash
+                              title="Delete PG"
                               onClick={() => {
                                 setSelectedId(item._id);
                                 setIsOpenDelete(true);
                               }}
-                              className="w-5 h-5 cursor-pointer object-contain hover:scale-110 transition-all duration-200"
+                              className="w-4.5 h-4.5 text-red-600 hover:text-red-800 cursor-pointer hover:scale-110 transition-all duration-200"
                             />
                           </div>
                         </td>

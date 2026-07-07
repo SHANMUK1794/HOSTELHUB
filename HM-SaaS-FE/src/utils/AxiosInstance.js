@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-//  baseURL: "https://api-techjose-hostelos.techjose.com",
+//  baseURL: "http://localhost:5000",
    baseURL: "http://localhost:3000",
 
   headers: {
@@ -13,7 +13,7 @@ const axiosInstance = axios.create({
 
 // for form data for file input 
 export const axiosInstance2 = axios.create({
-  // baseURL: "https://api-techjose-hostelos.techjose.com",
+  // baseURL: "http://localhost:5000",
     baseURL: "http://localhost:3000",
 
   headers: {

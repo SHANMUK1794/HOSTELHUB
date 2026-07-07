@@ -32,7 +32,7 @@ const SwapConfirmModal = ({ isOpen, onConfirm, onClose, targetMode }) => {
         </button>
 
         <img
-          src="https://asset.techjose.com/Hostelos/recycle.png"
+          src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67'/></svg>"
           alt="Recycle Img"
         />
 

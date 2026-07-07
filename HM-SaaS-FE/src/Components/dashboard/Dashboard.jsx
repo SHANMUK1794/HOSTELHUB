@@ -130,7 +130,7 @@ const Dashboard = () => {
         <img
           src={
             theme.bannerImage ||
-            "https://asset.techjose.com/Hostelos/dasboardImg/banner.jpg"
+            "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>"
           }
           alt="Room Background"
           className="absolute inset-0 w-full h-full object-cover object-[right_79%]"
@@ -255,7 +255,7 @@ const Dashboard = () => {
               >
                 <img
                   src={
-                    "https://asset.techjose.com/Hostelos/dasboardImg/booking.png"
+                    "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>"
                   }
                   alt="Bookings"
                   className="w-6 h-6 object-contain"
@@ -279,25 +279,25 @@ const Dashboard = () => {
 
             {[
               {
-                icon: "https://asset.techjose.com/Hostelos/dasboardImg/acroom.png",
+                icon: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>",
                 val: reservationData.totalAC,
                 label: "AC Rooms",
                 iconSize: "w-5 h-5",
               },
               {
-                icon: "https://asset.techjose.com/Hostelos/NewImages/Fan.png",
+                icon: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>",
                 val: reservationData.totalNonAC,
                 label: "Non AC Rooms",
                 iconSize: "w-7 h-7",
               },
               {
-                icon: "https://asset.techjose.com/Hostelos/dasboardImg/vacant.png",
+                icon: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>",
                 val: reservationData.totalVacant,
                 label: "Total Vacant",
                 iconSize: "w-5 h-5",
               },
               {
-                icon: "https://asset.techjose.com/Hostelos/NewImages/TotalRoom.png",
+                icon: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>",
                 val: reservationData.roomCount,
                 label: "Total Rooms",
                 iconSize: "w-7 h-7",
@@ -490,7 +490,7 @@ const Dashboard = () => {
               >
                 <span className="flex items-center gap-1">
                   <img
-                    src="https://asset.techjose.com/Hostelos/vegicon.png"
+                    src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>"
                     alt="veg icon"
                     className="w-4 h-4"
                   />
@@ -504,7 +504,7 @@ const Dashboard = () => {
                 </span>
                 <span className="flex items-center gap-1">
                   <img
-                    src="https://asset.techjose.com/Hostelos/nonvegicon.png"
+                    src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>"
                     alt="non-veg icon"
                     className="w-4 h-4"
                   />
@@ -637,22 +637,22 @@ const Dashboard = () => {
           <div className="grid grid-cols-2 gap-4">
             {[
               {
-                icon: "https://asset.techjose.com/Hostelos/dasboardImg/inmates.png",
+                icon: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>",
                 val: dashboardData.totalCount,
                 label: "Inmates",
               },
               {
-                icon: "https://asset.techjose.com/Hostelos/dasboardImg/vehicles.png",
+                icon: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>",
                 val: dashboardData.vehicleCount,
                 label: "Vehicles",
               },
               {
-                icon: "https://asset.techjose.com/Hostelos/dasboardImg/present.png",
+                icon: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>",
                 val: dashboardData.totalPresent,
                 label: "Present",
               },
               {
-                icon: "https://asset.techjose.com/Hostelos/dasboardImg/absent.png",
+                icon: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>",
                 val: dashboardData.totalAbsent,
                 label: "Absent",
               },

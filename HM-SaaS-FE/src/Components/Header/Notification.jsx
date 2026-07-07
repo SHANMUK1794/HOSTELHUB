@@ -6,13 +6,13 @@ import { useNavigate } from "react-router-dom";
 
 const NOTIFICATION_ICONS = {
   birthday:
-    "https://asset.techjose.com/Hostelos/Notification/Birthday-reminders.png",
+    "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8'/><path d='M4 16h16'/><path d='M10 9V5a2 2 0 0 1 4 0v4'/><circle cx='12' cy='3' r='1'/></svg>",
   complaint:
-    "https://asset.techjose.com/Hostelos/Notification/Complaints.png",
+    "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/><rect x='8' y='2' width='8' height='4' rx='1' ry='1'/><path d='M9 14h6'/><path d='M9 18h6'/><path d='M9 10h3'/></svg>",
   certificate:
-    "https://asset.techjose.com/Hostelos/Notification/Certificates.png",
+    "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'/><path d='M12 8v4'/><path d='M12 16h.01'/></svg>",
   default:
-    "https://asset.techjose.com/Hostelos/Notification/Complaints.png",
+    "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/><rect x='8' y='2' width='8' height='4' rx='1' ry='1'/><path d='M9 14h6'/><path d='M9 18h6'/><path d='M9 10h3'/></svg>",
 };
 
 const Notification = () => {

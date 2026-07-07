@@ -35,17 +35,17 @@ const mealList = [
   {
     label: "Break fast",
     key: "Breakfast",
-    img: "https://asset.techjose.com/Hostelos/Kitchen/breakfast.png",
+    img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2'><circle cx='12' cy='12' r='10'/><path d='M12 2v20M2 12h20'/></svg>",
   },
   {
     label: "Lunch",
     key: "Lunch",
-    img: "https://asset.techjose.com/Hostelos/Kitchen/lunch.png",
+    img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2'><circle cx='12' cy='12' r='10'/><path d='M12 2v20M2 12h20'/></svg>",
   },
   {
     label: "Dinner",
     key: "Dinner",
-    img: "https://asset.techjose.com/Hostelos/Kitchen/dinner.png",
+    img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2'><circle cx='12' cy='12' r='10'/><path d='M12 2v20M2 12h20'/></svg>",
   },
 ];
 
@@ -321,27 +321,27 @@ const KitchenMenu = () => {
 
   const cards = [
     {
-      img: "https://asset.techjose.com/Hostelos/Kitchen/FoodandKitchen.jpg",
+      img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 18h12a2 2 0 0 0 2-2v-5H4v5a2 2 0 0 0 2 2z'/><path d='M2 11h20'/><path d='M12 2v6'/><circle cx='12' cy='2' r='1'/></svg>",
       text: "Food and Kitchen",
       path: "/FoodAndKitchen",
     },
     {
-      img: "https://asset.techjose.com/Hostelos/Kitchen/KitchenMenu.jpg",
+      img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 18h12a2 2 0 0 0 2-2v-5H4v5a2 2 0 0 0 2 2z'/><path d='M2 11h20'/><path d='M12 2v6'/><circle cx='12' cy='2' r='1'/></svg>",
       text: "Kitchen Menu",
       path: "/KitchenMenu",
     },
     {
-      img: "https://asset.techjose.com/Hostelos/Kitchen/KitchenExpance.png",
+      img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 18h12a2 2 0 0 0 2-2v-5H4v5a2 2 0 0 0 2 2z'/><path d='M2 11h20'/><path d='M12 2v6'/><circle cx='12' cy='2' r='1'/></svg>",
       text: "Kitchen Expense",
       path: "/KitchenExpenses",
     },
     {
-      img: "https://asset.techjose.com/Hostelos/Kitchen/kitcheninventory.jpg",
+      img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 18h12a2 2 0 0 0 2-2v-5H4v5a2 2 0 0 0 2 2z'/><path d='M2 11h20'/><path d='M12 2v6'/><circle cx='12' cy='2' r='1'/></svg>",
       text: "Kitchen Inventory",
       path: "/KitchenInventory",
     },
     {
-      img: "https://asset.techjose.com/Hostelos/Kitchen/GasandCylinder.jpg",
+      img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 18h12a2 2 0 0 0 2-2v-5H4v5a2 2 0 0 0 2 2z'/><path d='M2 11h20'/><path d='M12 2v6'/><circle cx='12' cy='2' r='1'/></svg>",
       text: "Gas Cylinder",
       path: "/LpgCylinderMain",
     },
@@ -349,7 +349,7 @@ const KitchenMenu = () => {
 
   const BASE_URL =
     axiosInstance.defaults.baseURL ||
-    "https://api-techjose-hostelos.techjose.com";
+    "http://localhost:5000";
   const getImageUrl = (path) => {
     if (!path || path === "undefined") return null;
     if (
@@ -437,7 +437,7 @@ const KitchenMenu = () => {
             }}
           ></div>
           <img
-            src={"https://asset.techjose.com/Hostelos/Kitchen/chef.png"}
+            src={"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 18h12a2 2 0 0 0 2-2v-5H4v5a2 2 0 0 0 2 2z'/><path d='M2 11h20'/><path d='M12 2v6'/><circle cx='12' cy='2' r='1'/></svg>"}
             alt="Chef"
             className="absolute bottom-0 right-4 h-[85%] object-contain origin-bottom"
           />
@@ -531,7 +531,7 @@ const KitchenMenu = () => {
         <div className="flex flex-col lg:flex-row gap-8 items-center lg:items-start">
           <div className="hidden lg:flex w-1/3 justify-center items-center">
             <img
-              src={"https://asset.techjose.com/Hostelos/Kitchen/chef.png"}
+              src={"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 18h12a2 2 0 0 0 2-2v-5H4v5a2 2 0 0 0 2 2z'/><path d='M2 11h20'/><path d='M12 2v6'/><circle cx='12' cy='2' r='1'/></svg>"}
               alt="Chef"
               className="w-full max-w-[300px] object-contain drop-shadow-[0_0_25px_rgba(34,197,94,0.6)]"
             />
@@ -742,14 +742,14 @@ const KitchenMenu = () => {
                   className="h-32 object-contain rounded-md"
                   onError={(e) => {
                     e.target.src =
-                      "https://asset.techjose.com/Hostelos/Kitchen/upload_illustration.png";
+                      "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12'/></svg>";
                   }}
                 />
               ) : (
                 <div className="flex flex-col items-center">
                   <img
                     src={
-                      "https://asset.techjose.com/Hostelos/Kitchen/upload_illustration.png"
+                      "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12'/></svg>"
                     }
                     alt="Upload"
                     className="w-[180px] h-auto mb-2 object-contain"

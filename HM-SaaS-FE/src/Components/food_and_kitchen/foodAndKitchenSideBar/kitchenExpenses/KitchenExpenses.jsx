@@ -49,27 +49,27 @@ const KitchenExpenses = () => {
 
   const cards = [
     {
-      img: "https://asset.techjose.com/Hostelos/Kitchen/FoodandKitchen.jpg",
+      img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 18h12a2 2 0 0 0 2-2v-5H4v5a2 2 0 0 0 2 2z'/><path d='M2 11h20'/><path d='M12 2v6'/><circle cx='12' cy='2' r='1'/></svg>",
       text: "Food and Kitchen",
       path: "/FoodAndKitchen",
     },
     {
-      img: "https://asset.techjose.com/Hostelos/Kitchen/KitchenMenu.jpg",
+      img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 18h12a2 2 0 0 0 2-2v-5H4v5a2 2 0 0 0 2 2z'/><path d='M2 11h20'/><path d='M12 2v6'/><circle cx='12' cy='2' r='1'/></svg>",
       text: "Kitchen Menu",
       path: "/KitchenMenu",
     },
     {
-      img: "https://asset.techjose.com/Hostelos/Kitchen/KitchenExpance.png",
+      img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 18h12a2 2 0 0 0 2-2v-5H4v5a2 2 0 0 0 2 2z'/><path d='M2 11h20'/><path d='M12 2v6'/><circle cx='12' cy='2' r='1'/></svg>",
       text: "Kitchen Expense",
       path: "/KitchenExpenses",
     },
     {
-      img: "https://asset.techjose.com/Hostelos/Kitchen/kitcheninventory.jpg",
+      img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 18h12a2 2 0 0 0 2-2v-5H4v5a2 2 0 0 0 2 2z'/><path d='M2 11h20'/><path d='M12 2v6'/><circle cx='12' cy='2' r='1'/></svg>",
       text: "Kitchen Inventory",
       path: "/KitchenInventory",
     },
     {
-      img: "https://asset.techjose.com/Hostelos/Kitchen/GasandCylinder.jpg",
+      img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 18h12a2 2 0 0 0 2-2v-5H4v5a2 2 0 0 0 2 2z'/><path d='M2 11h20'/><path d='M12 2v6'/><circle cx='12' cy='2' r='1'/></svg>",
       text: "Gas Cylinder",
       path: "/LpgCylinderMain",
     },
@@ -234,7 +234,7 @@ const KitchenExpenses = () => {
             }}
           ></div>
           <img
-            src={"https://asset.techjose.com/Hostelos/Kitchen/chef.png"}
+            src={"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 18h12a2 2 0 0 0 2-2v-5H4v5a2 2 0 0 0 2 2z'/><path d='M2 11h20'/><path d='M12 2v6'/><circle cx='12' cy='2' r='1'/></svg>"}
             alt="Chef"
             className="absolute bottom-0 right-4 h-[85%] object-contain origin-bottom"
           />

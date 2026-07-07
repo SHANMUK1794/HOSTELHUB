@@ -28,7 +28,7 @@ const FoodMenu = ({ onClose, branchName }) => {
     if (!path || path === "undefined") return null;
     if (path.startsWith("http") || path.startsWith("blob:") || path.startsWith("data:")) return path;
     
-    const BASE_URL = axiosInstance.defaults.baseURL || "https://api-techjose-hostelos.techjose.com";
+    const BASE_URL = axiosInstance.defaults.baseURL || "http://localhost:5000";
     const cleanBase = BASE_URL.endsWith("/") ? BASE_URL.slice(0, -1) : BASE_URL;
     const cleanPath = path.startsWith("/") ? path : `/${path}`;
     

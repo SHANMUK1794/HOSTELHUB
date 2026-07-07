@@ -9,14 +9,14 @@ function ToastMessage({ text, success, failed, onClose }) {
          </button>
         {success && (
             <div className='w-full h-full bg-[#E7EEFF] flex flex-col justify-center items-center p-6 text-center'>
-                <img src="https://asset.techjose.com/Hostelos/Toast/SuccessMessage.png" alt="Success icon" className="w-20 h-20 mb-6" />
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>" alt="Success icon" className="w-20 h-20 mb-6" />
                 <h1 className="text-xl font-bold text-[#263765]">{text}</h1>
             </div>
         )}
 
        {failed && (
             <div className='w-full h-full bg-[#FFE8E8] flex flex-col justify-center items-center p-6 text-center'>
-                <img src="https://asset.techjose.com/Hostelos/Toast/ErrorMessage.png" alt="Error icon" className="w-20 h-20 mb-6" />
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>" alt="Error icon" className="w-20 h-20 mb-6" />
                 <h1 className="text-xl font-bold text-[#E72121]">{text}</h1>
             </div>
        )}

@@ -20,10 +20,11 @@ const DeletePopup = ({ onClose, onConfirm }) => {
             className="px-4 py-1 text-[#324371] gap-2 flex items-center rounded-md border-[2px] border-[#324371] transition disabled:opacity-50"
           >
             Confirm{" "}
-            <img
-              src={"https://asset.techjose.com/Hostelos/confirm.png"}
-              alt="confirm"
-            />
+            <div className="mx-auto w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-4">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-10 h-10">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+  </svg>
+</div>
           </button>
 
           <button
@@ -31,10 +32,11 @@ const DeletePopup = ({ onClose, onConfirm }) => {
             className="px-4 py-1 text-[#FF0000] gap-2 flex items-center border-[#FF0000] border-[2px] rounded-md transition disabled:opacity-50"
           >
             Cancel{" "}
-            <img
-              src={"https://asset.techjose.com/Hostelos/Cancel.png"}
-              alt="cancel"
-            />
+            <div className="mx-auto w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center mb-4">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-10 h-10">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+  </svg>
+</div>
           </button>
         </div>
       </div>

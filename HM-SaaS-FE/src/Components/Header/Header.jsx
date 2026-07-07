@@ -12,7 +12,8 @@ import Notification from "./Notification";
 import { HiOutlineUserCircle } from "react-icons/hi2";
 import { MdLogout } from "react-icons/md";
 import { FaRegUser } from "react-icons/fa";
-import { IoSettingsOutline } from "react-icons/io5";
+import { IoSettingsOutline, IoNotificationsOutline } from "react-icons/io5";
+
 import { useTheme } from "../../hooks/ThemeContext";
 import axiosInstance from "../../utils/AxiosInstance";
 
@@ -194,14 +195,12 @@ const Header = () => {
           {/* Notification bell */}
           {!hideNotification && (
             <button
-              className="relative"
+              className="relative focus:outline-none"
               onClick={() => setShowNotification(!showNotification)}
             >
-              <img
-                src={theme.images.notification}
-                alt="notification"
-                className="w-6 h-6"
-                style={{ filter: theme?.darkMode ? "invert(1)" : "none" }}
+              <IoNotificationsOutline
+                className="w-6 h-6 text-teal-800"
+                style={{ color: "var(--theme-heading-text)" }}
               />
               {hasUnread && (
                 <span className="absolute top-0 right-0 h-2 w-2 bg-red-600 rounded-full" />
@@ -403,7 +402,7 @@ const Header = () => {
                   {selectedBranch || "Select Hostel"}
                 </span>
                 <img
-                  src="https://asset.techjose.com/Hostelos/sidebarimages/vector.png"
+                  src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>"
                   alt="Dropdown"
                   className="w-3 h-3 flex-shrink-0"
                 />
@@ -463,14 +462,12 @@ const Header = () => {
           {/* Notification */}
           {!hideNotification && (
             <button
-              className="relative"
+              className="relative focus:outline-none"
               onClick={() => setShowNotification(!showNotification)}
             >
-              <img
-                src={theme.images.notification}
-                alt="notification"
-                className="w-6 h-6"
-                style={{ filter: theme?.darkMode ? "invert(1)" : "none" }}
+              <IoNotificationsOutline
+                className="w-6 h-6 text-teal-800"
+                style={{ color: "var(--theme-heading-text)" }}
               />
               {hasUnread && (
                 <span className="absolute top-0 right-0 h-2 w-2 bg-red-600 rounded-full" />
@@ -608,7 +605,7 @@ const Header = () => {
                   {selectedBranch || "Select Hostel"}
                 </span>
                 <img
-                  src="https://asset.techjose.com/Hostelos/sidebarimages/vector.png"
+                  src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>"
                   alt="Dropdown"
                   className="w-3 h-3 flex-shrink-0"
                 />
@@ -669,14 +666,12 @@ const Header = () => {
           <div className="flex items-center gap-4 xl:gap-6 relative">
             {!hideNotification && (
               <button
-                className="relative"
+                className="relative focus:outline-none"
                 onClick={() => setShowNotification(!showNotification)}
               >
-                <img
-                  src={theme.images.notification}
-                  alt="notification"
-                  className="w-7 h-7"
-                  style={{ filter: theme?.darkMode ? "invert(1)" : "none" }}
+                <IoNotificationsOutline
+                  className="w-7 h-7 text-teal-800"
+                  style={{ color: "var(--theme-heading-text)" }}
                 />
                 {hasUnread && (
                   <span className="absolute top-0 right-0 h-2 w-2 bg-red-600 rounded-full" />
@@ -813,7 +808,7 @@ const Header = () => {
             }}
           >
             <img
-              src="https://asset.techjose.com/Hostelos/logoutImage.png"
+              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>"
               alt="Logout"
               className="w-16 sm:w-20 md:w-24 h-auto mx-auto mb-4 object-contain"
             />

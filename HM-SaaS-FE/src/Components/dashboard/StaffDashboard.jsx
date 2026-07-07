@@ -78,7 +78,7 @@ const StaffDashboard = () => {
           <img
             src={
               theme.bannerImage ||
-              "https://asset.techjose.com/Hostelos/dasboardImg/banner.jpg"
+              "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>"
             }
             alt="Room Background"
             className="absolute inset-0 w-full h-full object-cover object-[right_79%]"
@@ -182,7 +182,7 @@ const StaffDashboard = () => {
                 >
                   <img
                     src={
-                      "https://asset.techjose.com/Hostelos/dasboardImg/booking.png"
+                      "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>"
                     }
                     alt="Bookings"
                     className="w-7 h-7 object-contain"
@@ -206,22 +206,22 @@ const StaffDashboard = () => {
 
               {[
                 {
-                  icon: "https://asset.techjose.com/Hostelos/dasboardImg/acroom.png",
+                  icon: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>",
                   val: selectedHostelData?.totalAC || 0,
                   label: "AC Rooms",
                 },
                 {
-                  icon: "https://asset.techjose.com/Hostelos/NewImages/Fan.png",
+                  icon: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>",
                   val: selectedHostelData?.totalNonAC || 0,
                   label: "Non AC Rooms",
                 },
                 {
-                  icon: "https://asset.techjose.com/Hostelos/dasboardImg/vacant.png",
+                  icon: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>",
                   val: selectedHostelData?.totalVacant || 0,
                   label: "Total Vacant",
                 },
                 {
-                  icon: "https://asset.techjose.com/Hostelos/NewImages/TotalRoom.png",
+                  icon: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>",
                   val: selectedHostelData?.roomCount || 0,
                   label: "Total Rooms",
                 },
@@ -329,7 +329,7 @@ const StaffDashboard = () => {
               <div className="flex flex-col gap-3">
                 <div className="flex items-center gap-3">
                   <img
-                    src={"https://asset.techjose.com/Hostelos/vegicon.png"}
+                    src={"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>"}
                     alt="veg"
                     className="w-5 h-5"
                   />
@@ -348,7 +348,7 @@ const StaffDashboard = () => {
                 </div>
                 <div className="flex items-center gap-3">
                   <img
-                    src={"https://asset.techjose.com/Hostelos/nonvegicon.png"}
+                    src={"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>"}
                     alt="non-veg"
                     className="w-5 h-5"
                   />
@@ -394,22 +394,22 @@ const StaffDashboard = () => {
                 {
                   label: "Inmates",
                   val: inmatesCount,
-                  icon: "https://asset.techjose.com/Hostelos/dasboardImg/inmates.png",
+                  icon: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>",
                 },
                 {
                   label: "Vehicles",
                   val: data?.data?.vehicleCount || 0,
-                  icon: "https://asset.techjose.com/Hostelos/dasboardImg/vehicles.png",
+                  icon: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>",
                 },
                 {
                   label: "Present",
                   val: presentCount,
-                  icon: "https://asset.techjose.com/Hostelos/dasboardImg/present.png",
+                  icon: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>",
                 },
                 {
                   label: "Absent",
                   val: absentCount,
-                  icon: "https://asset.techjose.com/Hostelos/dasboardImg/absent.png",
+                  icon: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>",
                 },
               ].map((item, idx) => (
                 <div

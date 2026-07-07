@@ -74,27 +74,27 @@ const FoodAndKitchen = () => {
 
   const cards = [
     {
-      img: "https://asset.techjose.com/Hostelos/Kitchen/FoodandKitchen.jpg",
+      img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 18h12a2 2 0 0 0 2-2v-5H4v5a2 2 0 0 0 2 2z'/><path d='M2 11h20'/><path d='M12 2v6'/><circle cx='12' cy='2' r='1'/></svg>",
       text: "Food and Kitchen",
       path: "/FoodAndKitchen",
     },
     {
-      img: "https://asset.techjose.com/Hostelos/Kitchen/KitchenMenu.jpg",
+      img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 18h12a2 2 0 0 0 2-2v-5H4v5a2 2 0 0 0 2 2z'/><path d='M2 11h20'/><path d='M12 2v6'/><circle cx='12' cy='2' r='1'/></svg>",
       text: "Kitchen Menu",
       path: "/KitchenMenu",
     },
     {
-      img: "https://asset.techjose.com/Hostelos/Kitchen/KitchenExpance.png",
+      img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 18h12a2 2 0 0 0 2-2v-5H4v5a2 2 0 0 0 2 2z'/><path d='M2 11h20'/><path d='M12 2v6'/><circle cx='12' cy='2' r='1'/></svg>",
       text: "Kitchen Expense",
       path: "/KitchenExpenses",
     },
     {
-      img: "https://asset.techjose.com/Hostelos/Kitchen/kitcheninventory.jpg",
+      img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 18h12a2 2 0 0 0 2-2v-5H4v5a2 2 0 0 0 2 2z'/><path d='M2 11h20'/><path d='M12 2v6'/><circle cx='12' cy='2' r='1'/></svg>",
       text: "Kitchen Inventory",
       path: "/KitchenInventory",
     },
     {
-      img: "https://asset.techjose.com/Hostelos/Kitchen/GasandCylinder.jpg",
+      img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 18h12a2 2 0 0 0 2-2v-5H4v5a2 2 0 0 0 2 2z'/><path d='M2 11h20'/><path d='M12 2v6'/><circle cx='12' cy='2' r='1'/></svg>",
       text: "Gas Cylinder",
       path: "/LpgCylinderMain",
     },
@@ -178,7 +178,7 @@ const FoodAndKitchen = () => {
             }}
           ></div>
           <img
-            src={"https://asset.techjose.com/Hostelos/Kitchen/chef.png"}
+            src={"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 18h12a2 2 0 0 0 2-2v-5H4v5a2 2 0 0 0 2 2z'/><path d='M2 11h20'/><path d='M12 2v6'/><circle cx='12' cy='2' r='1'/></svg>"}
             alt="Chef"
             className="absolute bottom-0 right-4 h-[85%] object-contain origin-bottom"
           />
@@ -216,7 +216,7 @@ const FoodAndKitchen = () => {
 
           <div className="w-full max-w-sm mx-auto bg-gray-100 rounded-2xl overflow-hidden mb-6 min-h-[160px] h-[180px]">
             <img
-              src={"https://asset.techjose.com/Hostelos/Kitchen/breakfast.png"}
+              src={"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2'><circle cx='12' cy='12' r='10'/><path d='M12 2v20M2 12h20'/></svg>"}
               className="w-full h-full object-cover"
               alt="Meal"
             />
@@ -287,7 +287,7 @@ const FoodAndKitchen = () => {
               <div className="absolute bottom-5 left-5 inline-flex items-center gap-2 bg-[#008000] text-white px-4 py-1.5 rounded-full w-max text-sm font-medium z-10 shadow-sm">
                 <img
                   src={
-                    "https://asset.techjose.com/Hostelos/Kitchen/vegicon.svg"
+                    "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2316a34a' stroke-width='2' className='w-5 h-5'><rect x='3' y='3' width='18' height='18' rx='2' ry='2'/><circle cx='12' cy='12' r='5' fill='%2316a34a'/></svg>"
                   }
                   alt="veg"
                   className="w-4 h-4"
@@ -295,7 +295,7 @@ const FoodAndKitchen = () => {
                 Veg
               </div>
               <img
-                src={"https://asset.techjose.com/Hostelos/Kitchen/chef.png"}
+                src={"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 18h12a2 2 0 0 0 2-2v-5H4v5a2 2 0 0 0 2 2z'/><path d='M2 11h20'/><path d='M12 2v6'/><circle cx='12' cy='2' r='1'/></svg>"}
                 alt="Chef"
                 className="absolute bottom-0 -right-2 h-[75%] object-contain drop-shadow-[0_0_20px_rgba(34,197,94,0.3)] pointer-events-none"
               />
@@ -332,7 +332,7 @@ const FoodAndKitchen = () => {
               <div className="absolute bottom-5 left-5 inline-flex items-center gap-2 bg-[#FF0000] text-white px-4 py-1.5 rounded-full w-max text-sm font-medium z-10 shadow-sm">
                 <img
                   src={
-                    "https://asset.techjose.com/Hostelos/Kitchen/nonvegicon.svg"
+                    "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23dc2626' stroke-width='2' className='w-5 h-5'><rect x='3' y='3' width='18' height='18' rx='2' ry='2'/><polygon points='12,7 17,16 7,16' fill='%23dc2626'/></svg>"
                   }
                   alt="nonveg"
                   className="w-4 h-4"
@@ -340,7 +340,7 @@ const FoodAndKitchen = () => {
                 Non-Veg
               </div>
               <img
-                src={"https://asset.techjose.com/Hostelos/Kitchen/chef.png"}
+                src={"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 18h12a2 2 0 0 0 2-2v-5H4v5a2 2 0 0 0 2 2z'/><path d='M2 11h20'/><path d='M12 2v6'/><circle cx='12' cy='2' r='1'/></svg>"}
                 alt="Chef"
                 className="absolute bottom-0 -right-2 h-[75%] object-contain drop-shadow-[0_0_20px_rgba(239,68,68,0.3)] pointer-events-none"
               />

@@ -46,7 +46,7 @@ const DashboardWarden = () => {
           <img
             src={
               theme.bannerImage ||
-              "https://asset.techjose.com/Hostelos/dasboardImg/banner.jpg"
+              "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>"
             }
             alt="Room Background"
             // {/* Added 'object-right' to ensure the sofa stays in view */}
@@ -166,7 +166,7 @@ const DashboardWarden = () => {
               >
                 <img
                   src={
-                    "https://asset.techjose.com/Hostelos/dasboardImg/wardenDashboardImg/tablerbrandbooking.png"
+                    "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>"
                   }
                   alt="Bookings"
                   className="w-6 h-6 object-contain"
@@ -192,7 +192,7 @@ const DashboardWarden = () => {
 
             {[
               {
-                icon: "https://asset.techjose.com/Hostelos/dasboardImg/wardenDashboardImg/hugeiconssmartac.png",
+                icon: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>",
                 val:
                   selectedHostelData?.totalAC ||
                   data?.data?.roomSummary?.totalAC ||
@@ -200,7 +200,7 @@ const DashboardWarden = () => {
                 label: "AC Rooms",
               },
               {
-                icon: "https://asset.techjose.com/Hostelos/dasboardImg/wardenDashboardImg/wpffan.png",
+                icon: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>",
                 val:
                   selectedHostelData?.totalNonAC ||
                   data?.data?.roomSummary?.totalNonAC ||
@@ -208,7 +208,7 @@ const DashboardWarden = () => {
                 label: "Non AC Rooms",
               },
               {
-                icon: "https://asset.techjose.com/Hostelos/dasboardImg/wardenDashboardImg/mdiguestroomoutline.png",
+                icon: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>",
                 val:
                   selectedHostelData?.totalVacant ||
                   data?.data?.roomSummary?.totalVacant ||
@@ -216,7 +216,7 @@ const DashboardWarden = () => {
                 label: "Total Vacant",
               },
               {
-                icon: "https://asset.techjose.com/Hostelos/dasboardImg/wardenDashboardImg/cilroom.png",
+                icon: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>",
                 val:
                   selectedHostelData?.roomCount ||
                   data?.data?.roomSummary?.roomCount ||
@@ -285,22 +285,22 @@ const DashboardWarden = () => {
                 {
                   label: "Inmates",
                   val: inmatesCount,
-                  icon: "https://asset.techjose.com/Hostelos/dasboardImg/wardenDashboardImg/mdiguestroomoutline.png",
+                  icon: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>",
                 },
                 {
                   label: "Vehicles",
                   val: data?.data?.vehicleCount || 0,
-                  icon: "https://asset.techjose.com/Hostelos/dasboardImg/wardenDashboardImg/Vehicle.png",
+                  icon: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>",
                 },
                 {
                   label: "Present",
                   val: presentCount,
-                  icon: "https://asset.techjose.com/Hostelos/dasboardImg/wardenDashboardImg/Group.png",
+                  icon: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>",
                 },
                 {
                   label: "Absent",
                   val: absentCount,
-                  icon: "https://asset.techjose.com/Hostelos/dasboardImg/wardenDashboardImg/Group1.png",
+                  icon: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>",
                 },
               ].map((item, idx) => (
                 <div
@@ -524,7 +524,7 @@ const DashboardWarden = () => {
                   >
                     <img
                       src={
-                        "https://asset.techjose.com/Hostelos/dasboardImg/wardenDashboardImg/materialsymbolslightpendingactionsrounded.png"
+                        "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>"
                       }
                       alt="Pending"
                       className="w-6 h-6 object-contain"
@@ -542,7 +542,7 @@ const DashboardWarden = () => {
                   >
                     <img
                       src={
-                        "https://asset.techjose.com/Hostelos/dasboardImg/wardenDashboardImg/fluentmdl2completed.png"
+                        "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>"
                       }
                       alt="Completed"
                       className="w-6 h-6 object-contain"

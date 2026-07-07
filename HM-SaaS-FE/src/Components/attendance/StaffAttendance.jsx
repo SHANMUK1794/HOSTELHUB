@@ -308,7 +308,7 @@ const StaffAttendance = () => {
               onClick={() => setShowMenu(true)}
             >
               <img
-                src="https://asset.techjose.com/Hostelos/sidebarimages/kitchenh.png"
+                src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>"
                 alt="Kitchen"
                 className="w-4 h-4 filter brightness-0 invert"
               />
@@ -328,7 +328,7 @@ const StaffAttendance = () => {
               }}
             >
               <img
-                src="https://asset.techjose.com/Hostelos/Attendance/total-inmates.png"
+                src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>"
                 alt="Inmates"
                 className="w-7 h-7"
               />
@@ -355,7 +355,7 @@ const StaffAttendance = () => {
               }}
             >
               <img
-                src="https://asset.techjose.com/Hostelos/Attendance/Present.png"
+                src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>"
                 alt="Present"
                 className="w-7 h-7"
               />
@@ -379,7 +379,7 @@ const StaffAttendance = () => {
               }}
             >
               <img
-                src="https://asset.techjose.com/Hostelos/Attendance/Absent.png"
+                src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01'/></svg>"
                 alt="Absent"
                 className="w-7 h-7"
               />
