@@ -1,46 +1,25 @@
-import { Schema, model } from "mongoose";
+// Migrated: replaced mongoose import with mongoose-compat (Prisma adapter)
+// Maps to Prisma model: fund (via "incomingFund" → "fund" mapping)
 import mongoose from "../../../config/mongoose-compat.js";
+
+const { Schema } = mongoose;
 
 const incomingFundSchema = new Schema(
   {
-    // Multi-tenant isolation
-    tenantId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Tenant",
-      required: true,
-      index: true,
-    },
-
+    tenantId: { type: String, required: true },
+    branchName: { type: String, required: true },
     date: { type: Date, required: true },
-    description: { type: String, required: true, trim: true },
+    description: { type: String, required: true },
     amount: { type: Number, required: true, min: 0 },
-    paymentMethod: {
-      type: String,
-      required: true,
-      enum: ["Cash", "Bank Transfer", "UPI", "Cheque"],
-      trim: true,
-    },
-    branchName: {
-      type: String,
-      required: true,
-    },
-    receiverName: { type: String, required: true, trim: true },
-    senderName: { type: String, required: true, trim: true },
-   
-  isdeleted: { type: Boolean, default: false }, // Make sure this exists in all of them
-  deletedinfo: {
+    paymentMethod: { type: String, required: true },
+    receiverName: { type: String, required: true },
+    senderName: { type: String, required: true },
+    isdeleted: { type: Boolean, default: false },
     deleteddate: { type: Date, default: null },
-    deleteby: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "user",
-      default: null,
-    },
-    module: { type: String, default: "FinanceUtilities" },
+    deleteby: { type: String, default: null },
   },
-  },
-  { timestamps: true },
+  { timestamps: true }
 );
 
 const incomingFund = mongoose.model("incomingFund", incomingFundSchema);
-
 export default incomingFund;

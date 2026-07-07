@@ -1,42 +1,24 @@
-import { Schema, model } from "mongoose";
+// Migrated: replaced mongoose import with mongoose-compat (Prisma adapter)
+// Maps to Prisma model: dailyExpense (via "daily_expense" → "dailyExpense" mapping)
 import mongoose from "../../../config/mongoose-compat.js";
+
+const { Schema } = mongoose;
 
 const dailyExpenseSchema = new Schema(
   {
-    // Multi-tenant isolation
-    tenantId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Tenant",
-      required: true,
-      index: true,
-    },
-
+    tenantId: { type: String, required: true },
+    branchName: { type: String, required: true },
     date: { type: Date, required: true },
-    work: { type: String, required: true, trim: true },
+    work: { type: String, required: true },
     voucherno: { type: Number, required: true },
     amount: { type: Number, required: true },
-    status: {
-      type: String,
-      required: true,
-      enum: ["Paid", "Unpaid"],
-      trim: true,
-    },
-    branchName: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    // "certificate" to "FinanceUtilities"
-  isdeleted: { type: Boolean, default: false },
-  deletedinfo: {
+    status: { type: String, required: true },
+    isdeleted: { type: Boolean, default: false },
     deleteddate: { type: Date, default: null },
-    deleteby: { type: Schema.Types.ObjectId, ref: "user", default: null },
-    module: { type: String, default: "FinanceUtilities" }, // Fixed default
+    deleteby: { type: String, default: null },
   },
-  },
-  { timestamps: true },
+  { timestamps: true }
 );
 
 const dailyExpense = mongoose.model("daily_expense", dailyExpenseSchema);
-
 export default dailyExpense;

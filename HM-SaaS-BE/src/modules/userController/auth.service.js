@@ -57,15 +57,14 @@ export const googleAuthUser = async (googleToken, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(randomPassword, salt);
 
-    user = new userModel({
+    user = await usersRepo.createUserRepo({
       username: name,
       email: email,
       password: hashedPassword,
       staffName: name, // Fallback to their Google Name
-      branchName: "Common", 
-      role: "Admin", 
+      branchName: "Common",
+      role: "Admin",
     });
-    await usersRepo.saveUserRepo(user);
   }
 
   // 5. Generate your app's standard JWT tokens (Exactly like standard login)
@@ -123,8 +122,13 @@ export const loginUser = async (body, res) => {
   user.refreshToken = refreshToken;
   await usersRepo.saveUserRepo(user);
 
-  await runDailyNotificationsOnce(user.tenantId);
-  await autoVacateCheck();
+  // Run background utilities — don't let errors here break the login
+  runDailyNotificationsOnce(user.tenantId).catch(e =>
+    console.warn("[login] runDailyNotificationsOnce error:", e.message)
+  );
+  autoVacateCheck().catch(e =>
+    console.warn("[login] autoVacateCheck error:", e.message)
+  );
 
   return {
     userData,
@@ -150,7 +154,7 @@ export const signupUser = async (body) => {
     throw err;
   }
 
-  console.log("Schema has email:", !!userModel.schema.path("email"));
+  // (debug line removed)
 
   const existingUser = await usersRepo.findUserByEmailRepo(normalizedEmail);
   if (existingUser) {
@@ -161,7 +165,7 @@ export const signupUser = async (body) => {
 
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  const newUser = new userModel({
+  const savedUser = await usersRepo.createUserRepo({
     username: normalizedUsername,
     email: normalizedEmail,
     password: hashedPassword,
@@ -170,12 +174,6 @@ export const signupUser = async (body) => {
     role: "Admin",
     tenantId: null, // Tenant created separately after signup via /api/tenant/v1/create
   });
-
-  console.log("Before save:", newUser.toObject());
-
-  const savedUser = await usersRepo.saveUserRepo(newUser);
-
-  console.log("After save:", savedUser.toObject());
 
   return savedUser;
 };

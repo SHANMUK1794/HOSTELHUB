@@ -1,32 +1,18 @@
-import { Schema, model } from "mongoose";
+// Migrated: replaced mongoose import with mongoose-compat (Prisma adapter)
+// Maps to Prisma model: storeRoomHistory
+import mongoose from "../../config/mongoose-compat.js";
+
+const { Schema } = mongoose;
 
 const storeRoomHistorySchema = new Schema(
   {
-    tenantId: {
-      type: Schema.Types.ObjectId,
-      ref: "Tenant",
-      required: true,
-      index: true,
-    },
-    branchName: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    itemName: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    quantity: {
-      type: Number,
-      required: true,
-    },
+    tenantId: { type: String, required: true },
+    branchName: { type: String, required: true },
+    itemName: { type: String, required: true },
+    quantity: { type: Number, required: true },
   },
-  {
-    timestamps: true,
-  },
+  { timestamps: true }
 );
 
-const storeRoomHistory = model("StoreRoomHistory", storeRoomHistorySchema);
+const storeRoomHistory = mongoose.model("StoreRoomHistory", storeRoomHistorySchema);
 export default storeRoomHistory;

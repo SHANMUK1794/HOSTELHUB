@@ -1,13 +1,11 @@
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
-
 generator client {
   provider = "prisma-client-js"
 }
 
-// 1. Tenant Model
+datasource db {
+  provider = "postgresql"
+}
+
 model Tenant {
   id        String   @id @default(uuid())
   name      String
@@ -18,33 +16,31 @@ model Tenant {
   updatedAt DateTime @updatedAt
 }
 
-// 2. User Model (auth.model.js)
 model User {
-  id            String    @id @default(uuid())
-  staffName     String
-  role          String?
-  shift         String?
-  username      String?
-  phoneNo       String?
-  email         String?   @unique
-  password      String
-  tenantId      String?
-  admin_id      String?
-  branchName    String
-  staying       Boolean   @default(true)
-  vacatedate    DateTime?
-  refreshToken  String?
-  otp           String?
-  otpExpiry     DateTime?
-  isdeleted     Boolean   @default(false)
-  deleteddate   DateTime?
-  deleteby      String?
-  module        String?   @default("user")
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  id           String    @id @default(uuid())
+  staffName    String
+  role         String?
+  shift        String?
+  username     String?
+  phoneNo      String?
+  email        String?   @unique
+  password     String
+  tenantId     String?
+  admin_id     String?
+  branchName   String
+  staying      Boolean   @default(true)
+  vacatedate   DateTime?
+  refreshToken String?
+  otp          String?
+  otpExpiry    DateTime?
+  isdeleted    Boolean   @default(false)
+  deleteddate  DateTime?
+  deleteby     String?
+  module       String?   @default("user")
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
 }
 
-// 3. Room Model (Room&Residence.model.js)
 model Room {
   id          String    @id @default(uuid())
   tenantId    String
@@ -62,51 +58,49 @@ model Room {
   deleteby    String?
   module      String?   @default("room")
   users       String[]  @default([])
-  pgUsers     Json?     @default("[]") // stores PG users as JSON array of objects
+  pgUsers     Json?     @default("[]")
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
   @@unique([tenantId, branchName, Floor, RoomNo])
 }
 
-// 4. Register Model (register.model.js - Resident registration)
 model Register {
-  id              String    @id @default(uuid())
-  tenantId        String
-  branchName      String
-  DateOfJoining   DateTime  @default(now())
-  Registerdate    DateTime  @default(now())
-  RoomNo          String?
-  BillNo          String
-  Name            String
-  DateOfBirth     DateTime
-  MobileNo        String
-  SameAsWhatsapp  Boolean   @default(false)
-  Whatsapp        String
-  Email           String
+  id               String    @id @default(uuid())
+  tenantId         String
+  branchName       String
+  DateOfJoining    DateTime  @default(now())
+  Registerdate     DateTime  @default(now())
+  RoomNo           String?
+  BillNo           String
+  Name             String
+  DateOfBirth      DateTime
+  MobileNo         String
+  SameAsWhatsapp   Boolean   @default(false)
+  Whatsapp         String
+  Email            String
   PermanentAddress String
-  AddharNumber    String
-  FoodType        String
-  RoomType        String
-  FloorNo         String    @default("-")
-  Deposit         Float     @default(0)
-  Discount        Float     @default(0)
-  Advance         Float     @default(0)
-  Parking         Boolean   @default(false)
-  vehicleNo       String?
-  status          String    @default("staying")
-  staying         Boolean   @default(true)
-  vacatedate      DateTime?
-  Rejoiningdate   DateTime?
-  isdeleted       Boolean   @default(false)
-  deleteddate     DateTime?
-  deleteby        String?
-  module          String?   @default("register")
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
+  AddharNumber     String
+  FoodType         String
+  RoomType         String
+  FloorNo          String    @default("-")
+  Deposit          Float     @default(0)
+  Discount         Float     @default(0)
+  Advance          Float     @default(0)
+  Parking          Boolean   @default(false)
+  vehicleNo        String?
+  status           String    @default("staying")
+  staying          Boolean   @default(true)
+  vacatedate       DateTime?
+  Rejoiningdate    DateTime?
+  isdeleted        Boolean   @default(false)
+  deleteddate      DateTime?
+  deleteby         String?
+  module           String?   @default("register")
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
 }
 
-// 5. PGData Model (pgdata.model.js)
 model PGData {
   id            String    @id @default(uuid())
   tenantId      String
@@ -133,7 +127,6 @@ model PGData {
   updatedAt     DateTime  @updatedAt
 }
 
-// 6. Subscription Model (subscription.model.js)
 model Subscription {
   id                    String    @id @default(uuid())
   organizationId        String    @unique
@@ -157,29 +150,27 @@ model Subscription {
   updatedAt             DateTime  @updatedAt
 }
 
-// 7. Settings Model (settings.model.js)
 model Settings {
-  id                      String   @id @default(uuid())
-  tenantId                String   @unique
-  branchName              String
-  businessName            String?
-  businessLogo            String?
-  businessAddress         String?
-  businessGST             String?
-  businessPhone           String?
-  businessEmail           String?
-  upiId                   String?
-  rentDueDay              Int      @default(5)
-  dueGracePeriod          Int      @default(3)
-  automaticDueGeneration  Boolean  @default(true)
-  taxEnabled              Boolean  @default(false)
-  taxRate                 Float    @default(0)
-  maintenanceCharge       Float    @default(0)
-  createdAt               DateTime @default(now())
-  updatedAt               DateTime @updatedAt
+  id                     String   @id @default(uuid())
+  tenantId               String   @unique
+  branchName             String
+  businessName           String?
+  businessLogo           String?
+  businessAddress        String?
+  businessGST            String?
+  businessPhone          String?
+  businessEmail          String?
+  upiId                  String?
+  rentDueDay             Int      @default(5)
+  dueGracePeriod         Int      @default(3)
+  automaticDueGeneration Boolean  @default(true)
+  taxEnabled             Boolean  @default(false)
+  taxRate                Float    @default(0)
+  maintenanceCharge      Float    @default(0)
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
 }
 
-// 8. Notification Model (notification.model.js)
 model Notification {
   id        String   @id @default(uuid())
   tenantId  String
@@ -191,20 +182,18 @@ model Notification {
   updatedAt DateTime @updatedAt
 }
 
-// 9. VacationForm Model (vacationform.model.js)
 model VacationForm {
-  id           String    @id @default(uuid())
+  id           String   @id @default(uuid())
   tenantId     String
   userId       String
   checkOutDate DateTime
   checkInDate  DateTime
   reason       String?
-  status       String    @default("pending")
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
+  status       String   @default("pending")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
 
-// 10. Item Model (StoreRoomExpenses/item.model.js)
 model Item {
   id         String   @id @default(uuid())
   tenantId   String
@@ -219,7 +208,6 @@ model Item {
   updatedAt  DateTime @updatedAt
 }
 
-// 11. StoreRoomInventory Model (StoreRoomInventory/item.model.js)
 model StoreRoomInventory {
   id                String   @id @default(uuid())
   tenantId          String
@@ -234,7 +222,6 @@ model StoreRoomInventory {
   updatedAt         DateTime @updatedAt
 }
 
-// 12. Menu Model (foodAndKitchen/menu/menu.model.js)
 model Menu {
   id         String   @id @default(uuid())
   tenantId   String
@@ -248,62 +235,59 @@ model Menu {
   updatedAt  DateTime @updatedAt
 }
 
-// 13. RoomRent Model (FinanceAndUtilities/RoomRent/roomRent.model.js)
 model RoomRent {
-  id             String    @id @default(uuid())
-  tenantId       String
-  branchName     String
-  userId         String
-  Name           String
-  RoomNo         String
-  Rent           Float
-  due            Float     @default(0)
-  Discount       Float     @default(0)
-  paid           Float     @default(0)
-  PaymentMethod  String?
-  paymentStatus  String    @default("pending")
-  paymentDate    DateTime?
-  month          String
-  year           Int
-  isdeleted      Boolean   @default(false)
-  deleteddate    DateTime?
-  deleteby       String?
-  module         String?   @default("roomrent")
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
+  id            String    @id @default(uuid())
+  tenantId      String
+  branchName    String
+  userId        String
+  Name          String
+  RoomNo        String
+  Rent          Float
+  due           Float     @default(0)
+  Discount      Float     @default(0)
+  paid          Float     @default(0)
+  PaymentMethod String?
+  paymentStatus String    @default("pending")
+  paymentDate   DateTime?
+  month         String
+  year          Int
+  isdeleted     Boolean   @default(false)
+  deleteddate   DateTime?
+  deleteby      String?
+  module        String?   @default("roomrent")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 }
 
-// 14. Payroll Model (FinanceAndUtilities/Payroll/payroll.model.js)
 model Payroll {
-  id             String    @id @default(uuid())
-  tenantId       String
-  branchName     String
-  employeeId     String
-  name           String
-  role           String
-  salary         Float
-  due            Float     @default(0)
-  paid           Float     @default(0)
-  PaymentMethod  String?
-  paymentStatus  String    @default("pending")
-  paymentDate    DateTime?
-  month          String
-  year           Int
-  isdeleted      Boolean   @default(false)
-  deleteddate    DateTime?
-  deleteby       String?
-  module         String?   @default("payroll")
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
+  id            String    @id @default(uuid())
+  tenantId      String
+  branchName    String
+  employeeId    String
+  name          String
+  role          String
+  salary        Float
+  due           Float     @default(0)
+  paid          Float     @default(0)
+  PaymentMethod String?
+  paymentStatus String    @default("pending")
+  paymentDate   DateTime?
+  month         String
+  year          Int
+  isdeleted     Boolean   @default(false)
+  deleteddate   DateTime?
+  deleteby      String?
+  module        String?   @default("payroll")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 }
 
-// 15. Fund Model (FinanceAndUtilities/Fund/fund.model.js)
 model Fund {
   id          String    @id @default(uuid())
   tenantId    String
   branchName  String
   amount      Float
-  type        String    // credit / debit
+  type        String
   description String
   date        DateTime  @default(now())
   isdeleted   Boolean   @default(false)
@@ -314,49 +298,46 @@ model Fund {
   updatedAt   DateTime  @updatedAt
 }
 
-// 16. EBill Model (FinanceAndUtilities/ElectricityBill/ebill.model.js)
 model EBill {
-  id             String    @id @default(uuid())
-  tenantId       String
-  branchName     String
-  month          String
-  year           Int
-  ebill          Float
-  due            Float     @default(0)
-  paid           Float     @default(0)
-  PaymentMethod  String?
-  paymentStatus  String    @default("pending")
-  paymentDate    DateTime?
-  isdeleted      Boolean   @default(false)
-  deleteddate    DateTime?
-  deleteby       String?
-  module         String?   @default("ebill")
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
+  id            String    @id @default(uuid())
+  tenantId      String
+  branchName    String
+  month         String
+  year          Int
+  ebill         Float
+  due           Float     @default(0)
+  paid          Float     @default(0)
+  PaymentMethod String?
+  paymentStatus String    @default("pending")
+  paymentDate   DateTime?
+  isdeleted     Boolean   @default(false)
+  deleteddate   DateTime?
+  deleteby      String?
+  module        String?   @default("ebill")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 }
 
-// 17. KitchenSummary Model (foodAndKitchen/kitchenSummary/summary.model.js)
 model KitchenSummary {
-  id                String   @id @default(uuid())
-  tenantId          String
-  branchName        String
-  date              DateTime @default(now())
-  presentStudents   Int      @default(0)
-  absentStudents    Int      @default(0)
-  morningVeg        Int      @default(0)
-  morningNonVeg     Int      @default(0)
-  afternoonVeg      Int      @default(0)
-  afternoonNonVeg   Int      @default(0)
-  nightVeg          Int      @default(0)
-  nightNonVeg       Int      @default(0)
-  specialBreakfast  Int      @default(0)
-  specialLunch      Int      @default(0)
-  specialDinner     Int      @default(0)
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
+  id               String   @id @default(uuid())
+  tenantId         String
+  branchName       String
+  date             DateTime @default(now())
+  presentStudents  Int      @default(0)
+  absentStudents   Int      @default(0)
+  morningVeg       Int      @default(0)
+  morningNonVeg    Int      @default(0)
+  afternoonVeg     Int      @default(0)
+  afternoonNonVeg  Int      @default(0)
+  nightVeg         Int      @default(0)
+  nightNonVeg      Int      @default(0)
+  specialBreakfast Int      @default(0)
+  specialLunch     Int      @default(0)
+  specialDinner    Int      @default(0)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 }
 
-// 18. KitchenHistory Model (foodAndKitchen/inventory/kitchenHistory.model.js)
 model KitchenHistory {
   id         String   @id @default(uuid())
   tenantId   String
@@ -366,26 +347,24 @@ model KitchenHistory {
   category   String
   quantity   Float
   price      Float
-  type       String   // add / remove
+  type       String
   date       DateTime @default(now())
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 }
 
-// 19. DueTracker Model (FinanceAndUtilities/dueTracker/dueTracker.model.js)
 model DueTracker {
-  id         String   @id @default(uuid())
-  tenantId   String
-  userId     String
-  amount     Float
-  category   String
-  dueDate    DateTime
-  status     String   @default("pending")
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id        String   @id @default(uuid())
+  tenantId  String
+  userId    String
+  amount    Float
+  category  String
+  dueDate   DateTime
+  status    String   @default("pending")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
-// 20. KitchenExpenses Model (foodAndKitchen/expenses/expenses.model.js)
 model KitchenExpenses {
   id         String   @id @default(uuid())
   tenantId   String
@@ -400,7 +379,6 @@ model KitchenExpenses {
   updatedAt  DateTime @updatedAt
 }
 
-// 21. KitchenInventory Model (foodAndKitchen/inventory/inventory.model.js)
 model KitchenInventory {
   id                String   @id @default(uuid())
   tenantId          String
@@ -415,53 +393,50 @@ model KitchenInventory {
   updatedAt         DateTime @updatedAt
 }
 
-// 22. Employee Model (employee/employee.model.js)
 model Employee {
-  id              String    @id @default(uuid())
-  tenantId        String
-  branchName      String
-  staffName       String
-  role            String
-  shift           String?
-  phoneNo         String
-  email           String?
-  password        String?
-  salary          Float     @default(0)
-  staying         Boolean   @default(true)
-  vacatedate      DateTime?
-  isdeleted       Boolean   @default(false)
-  deleteddate     DateTime?
-  deleteby        String?
-  module          String?   @default("employee")
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
+  id          String    @id @default(uuid())
+  tenantId    String
+  branchName  String
+  staffName   String
+  role        String
+  shift       String?
+  phoneNo     String
+  email       String?
+  password    String?
+  salary      Float     @default(0)
+  staying     Boolean   @default(true)
+  vacatedate  DateTime?
+  isdeleted   Boolean   @default(false)
+  deleteddate DateTime?
+  deleteby    String?
+  module      String?   @default("employee")
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }
 
-// 23. Advance Model (FinanceAndUtilities/advance/advance.model.js)
 model Advance {
-  id             String    @id @default(uuid())
-  tenantId       String
-  branchName     String
-  employeeId     String
-  name           String
-  role           String
-  salary         Float
-  advance        Float
-  paid           Float     @default(0)
-  PaymentMethod  String?
-  paymentStatus  String    @default("pending")
-  paymentDate    DateTime?
-  month          String
-  year           Int
-  isdeleted      Boolean   @default(false)
-  deleteddate    DateTime?
-  deleteby       String?
-  module         String?   @default("advance")
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
+  id            String    @id @default(uuid())
+  tenantId      String
+  branchName    String
+  employeeId    String
+  name          String
+  role          String
+  salary        Float
+  advance       Float
+  paid          Float     @default(0)
+  PaymentMethod String?
+  paymentStatus String    @default("pending")
+  paymentDate   DateTime?
+  month         String
+  year          Int
+  isdeleted     Boolean   @default(false)
+  deleteddate   DateTime?
+  deleteby      String?
+  module        String?   @default("advance")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 }
 
-// 24. DailyExpense Model (FinanceAndUtilities/dailyExpense/expense.model.js)
 model DailyExpense {
   id          String    @id @default(uuid())
   tenantId    String
@@ -479,7 +454,6 @@ model DailyExpense {
   updatedAt   DateTime  @updatedAt
 }
 
-// 25. Achievement Model (achievement/achievement.model.js)
 model Achievement {
   id          String   @id @default(uuid())
   tenantId    String
@@ -492,26 +466,112 @@ model Achievement {
   updatedAt   DateTime @updatedAt
 }
 
-// 26. ResidentsAttendance Model (attendance/residentsAttendance/residentsAttendance.model.js)
 model ResidentsAttendance {
   id          String   @id @default(uuid())
   tenantId    String
   branchName  String
   date        DateTime @default(now())
-  presentList String[] @default([]) // Array of register IDs
-  absentList  String[] @default([]) // Array of register IDs
+  presentList String[] @default([])
+  absentList  String[] @default([])
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
 
-// 27. StaffAttendance Model (attendance/staffAttendance/staffAttendance.model.js)
 model StaffAttendance {
   id          String   @id @default(uuid())
   tenantId    String
   branchName  String
   date        DateTime @default(now())
-  presentList String[] @default([]) // Array of user/employee IDs
-  absentList  String[] @default([]) // Array of user/employee IDs
+  presentList String[] @default([])
+  absentList  String[] @default([])
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+}
+
+model Cylinder {
+  id            String    @id @default(uuid())
+  tenantId      String
+  branchName    String
+  date          DateTime
+  deliverydate  DateTime
+  installeddate DateTime?
+  emptydate     DateTime?
+  capacity      Float
+  quantity      Float
+  amount        Float
+  usage         String?
+  isdeleted     Boolean   @default(false)
+  deleteddate   DateTime?
+  deleteby      String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model StoreRoomHistory {
+  id         String   @id @default(uuid())
+  tenantId   String
+  branchName String
+  itemName   String
+  quantity   Float
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Certificate {
+  id               String    @id @default(uuid())
+  tenantId         String
+  branchName       String
+  certificate_name String
+  certificate_no   String
+  remainder_date   DateTime
+  renewal_date     DateTime
+  isdeleted        Boolean   @default(false)
+  deleteddate      DateTime?
+  deleteby         String?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+}
+
+model Complaint {
+  id                String    @id @default(uuid())
+  tenantId          String
+  branchName        String
+  room_no           String?
+  floor             String?
+  date              DateTime
+  issue             String
+  issue_description String
+  status            String    @default("Pending")
+  isdeleted         Boolean   @default(false)
+  deleteddate       DateTime?
+  deleteby          String?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+}
+
+// Used by foodAndKitchen/inventory module — tracks simple item stock
+model KitchenStock {
+  id         String   @id @default(uuid())
+  tenantId   String
+  itemName   String
+  quantity   Float
+  unit       String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+// Used by foodAndKitchen/inventory module — logs usage (make-out) of kitchen items
+model KitchenUsageLog {
+  id         String    @id @default(uuid())
+  tenantId   String
+  date       DateTime
+  itemName   String
+  quantity   Float
+  used       Float
+  balance    Float
+  isdeleted  Boolean   @default(false)
+  deleteddate DateTime?
+  deleteby   String?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
 }

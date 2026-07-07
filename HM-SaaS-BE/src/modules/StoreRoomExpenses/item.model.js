@@ -1,52 +1,23 @@
-import { Schema, model } from "mongoose";
+// Migrated: replaced mongoose import with mongoose-compat (Prisma adapter)
+// Maps to Prisma model: item (StoreRoomExpense → Item)
 import mongoose from "../../config/mongoose-compat.js";
+
+const { Schema } = mongoose;
 
 const storeRoomExpenseSchema = new Schema(
   {
-    // Multi-tenant isolation
-    tenantId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Tenant",
-      required: true,
-      index: true,
-    },
-
-    date: {
-      type: Date,
-      required: true,
-    },
-    itemName: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    quantity: {
-      type: Number,
-      required: true,
-    },
-    price: {
-      type: Number,
-      required: true,
-    },
-    branchName: {
-      type: String,
-      required: true,
-      trim: true,
-    },
+    tenantId: { type: String, required: true },
+    branchName: { type: String, required: true },
+    date: { type: Date, required: true },
+    itemName: { type: String, required: true },
+    quantity: { type: Number, required: true },
+    price: { type: Number, required: true },
     isdeleted: { type: Boolean, default: false },
-    deletedinfo: {
-      deleteddate: { type: Date, default: null },
-      deleteby: { type: mongoose.Schema.ObjectId, ref: "user", default: null },
-      module: { type: String, default: "StoreRoom" },
-    },
+    deleteddate: { type: Date, default: null },
+    deleteby: { type: String, default: null },
   },
-  {
-    timestamps: true,
-  },
+  { timestamps: true }
 );
 
-const storeRoomExpense =
-  mongoose.models.StoreRoomExpense ||
-  mongoose.model("StoreRoomExpense", storeRoomExpenseSchema);
-
+const storeRoomExpense = mongoose.model("StoreRoomExpense", storeRoomExpenseSchema);
 export default storeRoomExpense;

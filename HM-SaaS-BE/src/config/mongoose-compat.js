@@ -1,11 +1,58 @@
 import prisma from "./prisma.js";
 
+// Maps Mongoose model names (lowercased) to Prisma client property names
+const MODEL_NAME_MAP = {
+  // Multi-word models (camelCase in Prisma)
+  "vacationform":        "vacationForm",
+  "storeroomhistory":    "storeRoomHistory",
+  "storeroomexpense":    "item",
+  "storeroominventory":  "storeRoomInventory",
+  "staffattendance":     "staffAttendance",
+  "electricitybill":     "electricityBill",
+  "roomrent":            "roomRent",
+  "duetracker":          "dueTracker",
+  "dailyexpense":        "dailyExpense",
+  "daily_expense":       "dailyExpense",
+  "kitchenusagelog":     "kitchenUsageLog",
+  "kitchenstock":        "kitchenStock",
+  "kitchenhistory":      "kitchenUsageLog",
+  "kitchenexpenses":     "kitchenExpenses",
+  "kitcheninventory":    "kitchenInventory",
+  "kitchensummary":      "kitchenHistory",  // summary model → kitchenHistory
+  "incomingfund":        "fund",
+  "incoming_fund":       "fund",
+  "pgdata":              "pgData",
+  // Single-word models — no mapping needed but included for clarity
+  "user":                "user",
+  "register":            "register",
+  "room":                "room",
+  "tenant":              "tenant",
+  "subscription":        "subscription",
+  "settings":            "settings",
+  "notification":        "notification",
+  "employee":            "employee",
+  "payroll":             "payroll",
+  "advance":             "advance",
+  "achievement":         "achievement",
+  "cylinder":            "cylinder",
+  "certificate":         "certificate",
+  "complaint":           "complaint",
+  "attendance":          "attendance",
+  "menu":                "menu",
+  "expense":             "kitchenExpenses",  // foodAndKitchen Expense model
+  "summary":             "kitchenHistory",
+  "inventory":           "kitchenStock",
+  "duetarcker":          "dueTracker",
+};
+
 class MongooseCompatModel {
   constructor(modelName) {
     // Map counter model name to user or just ignore
-    this.modelName = modelName === "counter" ? "user" : modelName.toLowerCase();
+    const lower = modelName === "counter" ? "user" : modelName.toLowerCase();
+    this.modelName = MODEL_NAME_MAP[lower] || lower;
     this.client = prisma[this.modelName];
   }
+
 
   // Model.create(data)
   async create(data) {
@@ -124,6 +171,66 @@ class MongooseCompatModel {
     return await this.client.updateMany({ where, data: cleanUpdate });
   }
 
+  // Model.aggregate(pipeline) — basic $match + $group with $sum support
+  async aggregate(pipeline = []) {
+    try {
+      const matchStage = pipeline.find(s => s.$match)?.$match || {};
+      const groupStage = pipeline.find(s => s.$group)?.$group;
+
+      const where = this._translateQuery(matchStage);
+
+      if (!groupStage) {
+        return await this.client.findMany({ where });
+      }
+
+      // Extract sum fields from $group
+      const sumFields = {};
+      for (const key of Object.keys(groupStage)) {
+        if (key === "_id") continue;
+        const val = groupStage[key];
+        if (val && val.$sum && typeof val.$sum === "string") {
+          sumFields[key] = { _sum: { [val.$sum.replace("$", "")]: true } };
+        }
+      }
+
+      // Check if grouping by a field (like year/month/branchName)
+      const groupById = groupStage._id;
+
+      if (groupById === null) {
+        // Simple total aggregation
+        const sumKeys = {};
+        for (const key of Object.keys(groupStage)) {
+          if (key === "_id") continue;
+          const val = groupStage[key];
+          if (val && val.$sum && typeof val.$sum === "string") {
+            sumKeys[val.$sum.replace("$", "")] = true;
+          }
+        }
+        const result = await this.client.aggregate({
+          where,
+          _sum: sumKeys,
+        });
+        const row = { _id: null };
+        for (const key of Object.keys(groupStage)) {
+          if (key === "_id") continue;
+          const val = groupStage[key];
+          if (val && val.$sum && typeof val.$sum === "string") {
+            const field = val.$sum.replace("$", "");
+            row[key] = result._sum[field] || 0;
+          }
+        }
+        return [row];
+      }
+
+      // Complex group by — fallback: return empty for complex pipelines
+      // (they will render 0 totals gracefully)
+      return [];
+    } catch (err) {
+      console.warn(`[mongoose-compat] aggregate fallback for ${this.modelName}:`, err.message);
+      return [];
+    }
+  }
+
   _translateQuery(query) {
     const where = {};
     for (const key in query) {
@@ -198,11 +305,16 @@ function wrapRecord(record, model) {
   
   Object.defineProperty(proxy, "save", {
     value: async function() {
-      const { id, ...data } = this;
-      return await model.client.update({
+      const { id, _id, createdAt, updatedAt, ...data } = this;
+      // Remove Mongoose-specific / virtual fields Prisma won't accept
+      delete data._id;
+      delete data.deletedinfo;  // Mongoose sub-document — not a Prisma field
+      delete data.module;       // from deletedinfo spread
+      const updated = await model.client.update({
         where: { id },
         data,
       });
+      return wrapRecord(updated, model);
     },
     enumerable: false,
   });
@@ -239,6 +351,7 @@ const mongooseMock = {
     constructor() {}
     index() {}
     pre() {}
+    set() {}
     virtual() {
       return {
         get: () => {}

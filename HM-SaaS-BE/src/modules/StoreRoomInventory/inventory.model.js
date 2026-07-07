@@ -1,55 +1,23 @@
-import { Schema, model, mongoose } from "mongoose";
-import user from "../userController/auth.model.js";
+// Migrated: replaced mongoose import with mongoose-compat (Prisma adapter)
+// Maps to Prisma model: storeRoomInventory
+import mongoose from "../../config/mongoose-compat.js";
+
+const { Schema } = mongoose;
+
 const storeRoomInventorySchema = new Schema(
   {
-    // Multi-tenant isolation
-    tenantId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Tenant",
-      required: true,
-      index: true,
-    },
-
-    date: {
-      type: Date,
-      required: true,
-    },
-    itemName: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    quantity: {
-      type: Number,
-      required: true,
-    },
-    used: {
-      type: Number,
-      required: true,
-    },
-    balance: {
-      type: Number,
-      required: true,
-    },
-    branchName: {
-      type: String,
-      required: true,
-      trim: true,
-    },
+    tenantId: { type: String, required: true },
+    branchName: { type: String, required: true },
+    itemName: { type: String, required: true },
+    quantity: { type: Number, required: true },
+    used: { type: Number, required: true },
+    balance: { type: Number, required: true },
     isdeleted: { type: Boolean, default: false },
-    deletedinfo: {
-      deleteddate: { type: Date, default: null },
-      deleteby: { type: mongoose.Schema.ObjectId, ref: "user", default: null },
-      module: { type: String, default: "achievement" },
-    },
+    deleteddate: { type: Date, default: null },
+    deleteby: { type: String, default: null },
   },
-  {
-    timestamps: true,
-  },
+  { timestamps: true }
 );
 
-const storeRoomInventory = model(
-  "StoreRoomInventory",
-  storeRoomInventorySchema,
-);
+const storeRoomInventory = mongoose.model("StoreRoomInventory", storeRoomInventorySchema);
 export default storeRoomInventory;
