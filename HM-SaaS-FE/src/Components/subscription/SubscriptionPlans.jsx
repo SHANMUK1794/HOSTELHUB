@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import axiosInstance from "../../utils/axiosInstance";
+import axiosInstance from "../../utils/AxiosInstance";
 
 const SubscriptionPlans = () => {
   const [loading, setLoading] = useState(null);
