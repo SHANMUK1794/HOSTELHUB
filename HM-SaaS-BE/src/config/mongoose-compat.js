@@ -286,6 +286,22 @@ class QueryBuilder {
     return this;
   }
 
+  lean() {
+    return this;
+  }
+
+  sort(opts) {
+    return this;
+  }
+
+  limit(num) {
+    return this;
+  }
+
+  skip(num) {
+    return this;
+  }
+
   then(onFulfilled, onRejected) {
     return this.promiseFn(this.populates).then(onFulfilled, onRejected);
   }
