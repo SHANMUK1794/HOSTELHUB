@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import express from "express";
 import cookieParser from "cookie-parser";
 import { connectDb } from "./src/config/dbConfig.js";
+import prisma from "./src/config/prisma.js";
 import rateLimit from "express-rate-limit";
 import helmet from "helmet";
 
@@ -102,8 +103,17 @@ const loginLimiter = rateLimit({
   windowMs: 60 * 60 * 1000,
   message: "Too many requests from this IP, please try again after an hour",
 });
-app.get('/health', (req, res) => {
-  res.status(200).json({ status: 'ok' });
+app.get("/health", async (req, res) => {
+  try {
+    await prisma.$queryRaw`SELECT 1`;
+    res.status(200).json({ status: "ok", database: "ok" });
+  } catch (error) {
+    res.status(503).json({
+      status: "error",
+      database: "unreachable",
+      message: error.message,
+    });
+  }
 });
 app.use("/api/users/v1/login", loginLimiter);
 
@@ -152,10 +162,6 @@ app.use("/api/funds/v1", fund);
 app.use("/api/tenant/v1", tenantRoutes);
 app.use("/api/settings/v1", settingsRouter);
 app.use("/api/subscription/v1", subscriptionRoutes);
-
-app.get("/health", (req, res) => {
-  res.status(200).send("OK");
-});
 
 async function startServer() {
   try {
