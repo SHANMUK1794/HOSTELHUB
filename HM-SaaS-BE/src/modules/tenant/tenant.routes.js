@@ -1,10 +1,18 @@
 import express from "express";
 import protect from "../../utils/authMiddleware.js";
-import { createTenant, getMyTenant, updateTenant } from "./tenant.controller.js";
+import {
+  createTenant,
+  getMyTenant,
+  setupTenant,
+  updateTenant,
+} from "./tenant.controller.js";
 
 const router = express.Router();
 
-// All tenant routes require authentication
+// Public onboarding fallback for cases where the JWT/cookie is not available yet.
+router.post("/setup", setupTenant);
+
+// All remaining tenant routes require authentication
 router.use(protect);
 
 // Create a new tenant (post-signup, when user has no tenantId)

@@ -44,8 +44,15 @@ const CreateTenant = () => {
         window.location.href = "/Dashboard";
       }
     } catch (err) {
-      setError(err.response?.data?.message || "Failed to create organization");
-      toast.error("Failed to create organization");
+      const message =
+        err.response?.data?.message ||
+        err.response?.data?.error ||
+        (err.request
+          ? "Backend is not reachable. Check VITE_API_URL in Cloudflare Pages and CORS on Railway."
+          : "Failed to create organization");
+
+      setError(message);
+      toast.error(message);
     } finally {
       setIsLoading(false);
     }

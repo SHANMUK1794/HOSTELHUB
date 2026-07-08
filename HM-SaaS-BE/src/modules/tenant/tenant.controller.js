@@ -1,4 +1,6 @@
 import * as tenantService from "./tenant.service.js";
+import userModel from "../userController/auth.model.js";
+import bcrypt from "bcryptjs";
 
 /**
  * Tenant Controller — HTTP handler layer.
@@ -72,6 +74,46 @@ export const updateTenant = async (req, res) => {
     return res.status(200).json({
       success: true,
       message: "Organization updated successfully.",
+      data: tenant,
+    });
+  } catch (error) {
+    return res.status(error.statusCode || 500).json({
+      success: false,
+      message: error.statusCode ? error.message : "Server error.",
+    });
+  }
+};
+
+/**
+ * POST /api/tenant/v1/setup  (PUBLIC — no JWT required)
+ * Onboarding endpoint: accepts email + password + tenant data.
+ * Used by the /onboard page to bypass JWT token issues.
+ */
+export const setupTenant = async (req, res) => {
+  try {
+    const { email, password, name, branches } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({ success: false, message: "Email and password are required." });
+    }
+
+    // Authenticate user by email + password
+    const user = await userModel.findOne({ email: email.trim().toLowerCase() });
+    if (!user) {
+      return res.status(401).json({ success: false, message: "Invalid email or password." });
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ success: false, message: "Invalid email or password." });
+    }
+
+    // Create the tenant
+    const tenant = await tenantService.createTenant(user._id, { name, branches });
+
+    return res.status(201).json({
+      success: true,
+      message: "Organization created successfully.",
       data: tenant,
     });
   } catch (error) {

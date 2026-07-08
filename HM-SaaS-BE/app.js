@@ -56,6 +56,23 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const port = process.env.PORT || 5000;
 const app = express();
+const allowedOrigins = [
+  "http://localhost:5173",
+  process.env.FRONTEND_URL,
+  ...(process.env.FRONTEND_URLS || "")
+    .split(",")
+    .map((origin) => origin.trim())
+    .filter(Boolean),
+].filter(Boolean);
+
+const isAllowedCloudflarePagesOrigin = (origin) => {
+  try {
+    const { hostname } = new URL(origin);
+    return hostname === "hostelhub.pages.dev" || hostname.endsWith(".hostelhub.pages.dev");
+  } catch {
+    return false;
+  }
+};
 
 // Security middleware
 app.use(helmet({
@@ -67,10 +84,12 @@ app.use(helmet({
 
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      process.env.FRONTEND_URL, // Allows production Cloudflare Pages frontend URL
-    ].filter(Boolean),
+    origin(origin, callback) {
+      if (!origin || allowedOrigins.includes(origin) || isAllowedCloudflarePagesOrigin(origin)) {
+        return callback(null, true);
+      }
+      return callback(new Error(`CORS blocked for origin: ${origin}`));
+    },
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   })
