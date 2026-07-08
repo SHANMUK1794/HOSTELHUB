@@ -33,16 +33,38 @@ axiosInstance2.interceptors.request.use((config) => {
   return config;
 });
 
+const getErrorMessage = (error) =>
+  error.response?.data?.message || error.response?.data?.error || "";
+
+const clearAuthAndRedirect = () => {
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
+  localStorage.removeItem("username");
+
+  if (window.location.pathname !== "/login" && window.location.pathname !== "/") {
+    window.location.href = "/login";
+  }
+};
+
 const tenantInterceptor = (error) => {
+  const message = getErrorMessage(error);
+
+  if (
+    error.response?.status === 401 &&
+    (message.includes("Not Authorized") ||
+      message.includes("Invalid Token") ||
+      message.includes("No Token") ||
+      message.includes("User Not Found"))
+  ) {
+    clearAuthAndRedirect();
+  }
+
   if (
     error.response &&
     (error.response.status === 403 || error.response.status === 404) &&
-    (error.response.data?.message?.includes("No organization associated") ||
-     error.response.data?.message?.includes("No tenant associated") ||
-     error.response.data?.message?.includes("Tenant not found") ||
-     error.response.data?.error?.includes("No organization associated") ||
-     error.response.data?.error?.includes("No tenant associated") ||
-     error.response.data?.error?.includes("Tenant not found"))
+    (message.includes("No organization associated") ||
+     message.includes("No tenant associated") ||
+     message.includes("Tenant not found"))
   ) {
     if (window.location.pathname !== "/onboard" && window.location.pathname !== "/subscription") {
       window.location.href = "/onboard";
