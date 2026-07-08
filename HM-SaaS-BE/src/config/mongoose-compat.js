@@ -8,7 +8,7 @@ const MODEL_NAME_MAP = {
   "storeroomexpense":    "item",
   "storeroominventory":  "storeRoomInventory",
   "staffattendance":     "staffAttendance",
-  "electricitybill":     "electricityBill",
+  "electricitybill":     "eBill",
   "roomrent":            "roomRent",
   "duetracker":          "dueTracker",
   "dailyexpense":        "dailyExpense",
@@ -21,7 +21,7 @@ const MODEL_NAME_MAP = {
   "kitchensummary":      "kitchenHistory",  // summary model → kitchenHistory
   "incomingfund":        "fund",
   "incoming_fund":       "fund",
-  "pgdata":              "pgData",
+  "pgdata":              "pGData",
   // Single-word models — no mapping needed but included for clarity
   "user":                "user",
   "register":            "register",
@@ -296,21 +296,21 @@ class MongooseCompatModel {
       }
 
       if (typeof val === "object" && !Array.isArray(val)) {
-        if (val.$in) {
+        if (val.$in !== undefined) {
           const cleanIn = val.$in.map(x => x === null || x === undefined ? "null-dummy-value" : x);
           where[cleanKey] = { in: cleanIn };
-        } else if (val.$nin) {
+        } else if (val.$nin !== undefined) {
           const cleanNin = val.$nin.map(x => x === null || x === undefined ? "null-dummy-value" : x);
           where[cleanKey] = { notIn: cleanNin };
-        } else if (val.$ne) {
+        } else if (val.$ne !== undefined) {
           where[cleanKey] = { not: val.$ne === null || val.$ne === undefined ? "null-dummy-value" : val.$ne };
-        } else if (val.$gt) {
+        } else if (val.$gt !== undefined) {
           where[cleanKey] = { gt: val.$gt };
-        } else if (val.$lt) {
+        } else if (val.$lt !== undefined) {
           where[cleanKey] = { lt: val.$lt };
-        } else if (val.$gte) {
+        } else if (val.$gte !== undefined) {
           where[cleanKey] = { gte: val.$gte };
-        } else if (val.$lte) {
+        } else if (val.$lte !== undefined) {
           where[cleanKey] = { lte: val.$lte };
         } else {
           where[cleanKey] = val;

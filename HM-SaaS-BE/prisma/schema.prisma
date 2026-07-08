@@ -195,31 +195,37 @@ model VacationForm {
 }
 
 model Item {
-  id         String   @id @default(uuid())
-  tenantId   String
-  branchName String
-  date       DateTime @default(now())
-  name       String
-  quantity   Float
-  price      Float
-  category   String
-  brandName  String?
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id          String    @id @default(uuid())
+  tenantId    String
+  branchName  String
+  date        DateTime  @default(now())
+  name        String
+  quantity    Float
+  price       Float
+  category    String
+  brandName   String?
+  isdeleted   Boolean   @default(false)
+  deleteddate DateTime?
+  deleteby    String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }
 
 model StoreRoomInventory {
-  id                String   @id @default(uuid())
+  id                String    @id @default(uuid())
   tenantId          String
   branchName        String
   itemName          String
   category          String
-  totalQuantity     Float    @default(0)
-  remainingQuantity Float    @default(0)
-  price             Float    @default(0)
+  totalQuantity     Float     @default(0)
+  remainingQuantity Float     @default(0)
+  price             Float     @default(0)
   unit              String
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
+  isdeleted         Boolean   @default(false)
+  deleteddate       DateTime?
+  deleteby          String?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
 }
 
 model Menu {
