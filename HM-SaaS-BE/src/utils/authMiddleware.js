@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import user from "../modules/User&Roles/userRoles.model.js";
+import prisma from "../config/prisma.js";
 
 const protect = async (req, res, next) => {
   try {
@@ -17,10 +17,36 @@ const protect = async (req, res, next) => {
     }
 
     const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+    if (!decoded.uuid) {
+      res.status(401).json({ error: "Not Authorized, Invalid Token" });
+      return;
+    }
 
-    req.user = await user
-      .findById(decoded.uuid)
-      .select("-password -refreshToken");
+    const foundUser = await prisma.user.findUnique({
+      where: { id: decoded.uuid.toString() },
+      select: {
+        id: true,
+        staffName: true,
+        role: true,
+        shift: true,
+        username: true,
+        phoneNo: true,
+        email: true,
+        tenantId: true,
+        admin_id: true,
+        branchName: true,
+        staying: true,
+        vacatedate: true,
+        isdeleted: true,
+        deleteddate: true,
+        deleteby: true,
+        module: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+    });
+
+    req.user = foundUser ? { ...foundUser, _id: foundUser.id } : null;
     if (!req.user) {
       res.status(401).json({ error: "Not Authorized, User Not Found" });
       return;
@@ -43,9 +69,9 @@ const protect = async (req, res, next) => {
                      reqPath.startsWith("/api/subscription/v1");
 
     if (!isExempt) {
-      // Dynamic import to avoid circular dependencies if any, though regular import is fine too.
-      const Subscription = (await import("../modules/subscription/subscription.model.js")).default;
-      const subscription = await Subscription.findOne({ organizationId: req.tenantId });
+      const subscription = await prisma.subscription.findUnique({
+        where: { organizationId: req.tenantId },
+      });
 
       if (!subscription) {
         return res.status(403).json({ 
@@ -73,7 +99,10 @@ const protect = async (req, res, next) => {
 
       if (isExpired && subscription.subscriptionStatus !== "inactive") {
         subscription.subscriptionStatus = "inactive";
-        await subscription.save();
+        await prisma.subscription.update({
+          where: { id: subscription.id },
+          data: { subscriptionStatus: "inactive" },
+        });
       }
 
       if (subscription.subscriptionStatus !== "active") {

@@ -22,7 +22,6 @@ export const googleLogin = async (req, res) => {
 
 export const login = async (req, res) => {
   try {
-    console.log(req.body);
     const { userData, accessToken, refreshToken, cookieOptions } =
       await authService.loginUser(req.body, res);
 

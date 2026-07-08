@@ -149,7 +149,7 @@ class MongooseCompatModel {
   // Model.find(query)
   find(query = {}) {
     const where = this._translateQuery(query);
-    return new QueryBuilder(async (populates) => {
+    return new QueryBuilder(async (populates, selectSpec) => {
       let records = await this.client.findMany({ where });
       records = wrapRecord(records, this);
 
@@ -172,24 +172,26 @@ class MongooseCompatModel {
           }
         }
       }
-      return records;
+      return applySelect(records, selectSpec);
     });
   }
 
   // Model.findOne(query)
   findOne(query = {}) {
     const where = this._translateQuery(query);
-    return new QueryBuilder(async () => {
+    return new QueryBuilder(async (populates, selectSpec) => {
       const record = await this.client.findFirst({ where });
-      return wrapRecord(record, this);
+      return applySelect(wrapRecord(record, this), selectSpec);
     });
   }
 
   // Model.findById(id)
-  async findById(id) {
-    if (!id) return null;
-    const record = await this.client.findUnique({ where: { id: id.toString() } });
-    return wrapRecord(record, this);
+  findById(id) {
+    return new QueryBuilder(async (populates, selectSpec) => {
+      if (!id) return null;
+      const record = await this.client.findUnique({ where: { id: id.toString() } });
+      return applySelect(wrapRecord(record, this), selectSpec);
+    });
   }
 
   // Model.findByIdAndUpdate(id, update, options)
@@ -437,10 +439,16 @@ class QueryBuilder {
   constructor(promiseFn) {
     this.promiseFn = promiseFn;
     this.populates = [];
+    this.selectSpec = null;
   }
 
   populate(opts) {
     this.populates.push(opts);
+    return this;
+  }
+
+  select(spec) {
+    this.selectSpec = spec;
     return this;
   }
 
@@ -461,12 +469,75 @@ class QueryBuilder {
   }
 
   then(onFulfilled, onRejected) {
-    return this.promiseFn(this.populates).then(onFulfilled, onRejected);
+    return this.promiseFn(this.populates, this.selectSpec).then(onFulfilled, onRejected);
   }
 
   catch(onRejected) {
     return this.then().catch(onRejected);
   }
+}
+
+function parseSelectSpec(spec) {
+  if (!spec) return null;
+
+  if (typeof spec === "string") {
+    const fields = spec.split(/\s+/).filter(Boolean);
+    if (fields.length === 0) return null;
+
+    const mode = fields.every(field => field.startsWith("-")) ? "exclude" : "include";
+    return {
+      mode,
+      fields: fields.map(field => field.replace(/^-/, "")),
+    };
+  }
+
+  if (typeof spec === "object") {
+    const entries = Object.entries(spec);
+    if (entries.length === 0) return null;
+
+    const mode = entries.every(([, value]) => value === 0 || value === false)
+      ? "exclude"
+      : "include";
+
+    return {
+      mode,
+      fields: entries
+        .filter(([, value]) => mode === "exclude" ? value === 0 || value === false : value === 1 || value === true)
+        .map(([field]) => field),
+    };
+  }
+
+  return null;
+}
+
+function applySelect(recordOrRecords, spec) {
+  const parsed = parseSelectSpec(spec);
+  if (!parsed || !recordOrRecords) return recordOrRecords;
+
+  if (Array.isArray(recordOrRecords)) {
+    return recordOrRecords.map(record => applySelect(record, spec));
+  }
+
+  if (parsed.mode === "exclude") {
+    const clone = { ...recordOrRecords };
+    for (const field of parsed.fields) {
+      delete clone[field];
+    }
+    return clone;
+  }
+
+  const selected = {};
+  for (const field of parsed.fields) {
+    if (Object.prototype.hasOwnProperty.call(recordOrRecords, field)) {
+      selected[field] = recordOrRecords[field];
+    }
+  }
+
+  if (Object.prototype.hasOwnProperty.call(recordOrRecords, "id")) {
+    selected.id = recordOrRecords.id;
+  }
+
+  return wrapRecord(selected, { modelName: null, client: null });
 }
 
 function wrapRecord(record, model) {
