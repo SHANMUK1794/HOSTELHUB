@@ -3,7 +3,13 @@ import user from "../modules/User&Roles/userRoles.model.js";
 
 const protect = async (req, res, next) => {
   try {
-    const token = req.cookies.auth_token;
+    // Accept token from Authorization header (Bearer) OR any cookie name
+    let token =
+      (req.headers.authorization?.startsWith("Bearer ")
+        ? req.headers.authorization.split(" ")[1]
+        : null) ||
+      req.cookies.auth_token ||
+      req.cookies.refreshToken;
 
     if (!token) {
       res.status(401).json({ error: "Not Authorized, No Token" });
