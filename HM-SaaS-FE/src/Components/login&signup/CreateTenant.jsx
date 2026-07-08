@@ -55,9 +55,9 @@ const CreateTenant = () => {
     width: "100%",
     height: "48px",
     borderRadius: "10px",
-    border: "1px solid rgba(255,255,255,0.09)",
-    background: "rgba(255,255,255,0.035)",
-    color: "#f1f5f9",
+    border: "1px solid color-mix(in srgb, var(--theme-primary-text) 15%, transparent)",
+    background: "var(--theme-card-bg)",
+    color: "var(--theme-primary-text)",
     padding: "0 16px",
     fontSize: "var(--theme-font-small)",
     fontFamily: "var(--theme-font-family-primary)",
@@ -206,12 +206,12 @@ const CreateTenant = () => {
                 required
                 style={inputStyle}
                 onFocus={(e) => {
-                  e.target.style.borderColor = "rgba(59,130,246,0.55)";
-                  e.target.style.background = "rgba(255,255,255,0.06)";
+                  e.target.style.borderColor = "var(--theme-accent)";
+                  e.target.style.background = "color-mix(in srgb, var(--theme-primary-text) 3%, var(--theme-card-bg))";
                 }}
                 onBlur={(e) => {
-                  e.target.style.borderColor = "rgba(255,255,255,0.09)";
-                  e.target.style.background = "rgba(255,255,255,0.035)";
+                  e.target.style.borderColor = "color-mix(in srgb, var(--theme-primary-text) 15%, transparent)";
+                  e.target.style.background = "var(--theme-card-bg)";
                 }}
               />
             </div>
@@ -235,12 +235,12 @@ const CreateTenant = () => {
                 required
                 style={inputStyle}
                 onFocus={(e) => {
-                  e.target.style.borderColor = "rgba(59,130,246,0.55)";
-                  e.target.style.background = "rgba(255,255,255,0.06)";
+                  e.target.style.borderColor = "var(--theme-accent)";
+                  e.target.style.background = "color-mix(in srgb, var(--theme-primary-text) 3%, var(--theme-card-bg))";
                 }}
                 onBlur={(e) => {
-                  e.target.style.borderColor = "rgba(255,255,255,0.09)";
-                  e.target.style.background = "rgba(255,255,255,0.035)";
+                  e.target.style.borderColor = "color-mix(in srgb, var(--theme-primary-text) 15%, transparent)";
+                  e.target.style.background = "var(--theme-card-bg)";
                 }}
               />
             </div>
@@ -266,12 +266,12 @@ const CreateTenant = () => {
                 }
                 style={textareaStyle}
                 onFocus={(e) => {
-                  e.target.style.borderColor = "rgba(59,130,246,0.55)";
-                  e.target.style.background = "rgba(255,255,255,0.06)";
+                  e.target.style.borderColor = "var(--theme-accent)";
+                  e.target.style.background = "color-mix(in srgb, var(--theme-primary-text) 3%, var(--theme-card-bg))";
                 }}
                 onBlur={(e) => {
-                  e.target.style.borderColor = "rgba(255,255,255,0.09)";
-                  e.target.style.background = "rgba(255,255,255,0.035)";
+                  e.target.style.borderColor = "color-mix(in srgb, var(--theme-primary-text) 15%, transparent)";
+                  e.target.style.background = "var(--theme-card-bg)";
                 }}
               />
             </div>
