@@ -69,7 +69,7 @@ export const googleAuthUser = async (googleToken, res) => {
 
   // 5. Generate your app's standard JWT tokens (Exactly like standard login)
   const userData = await generateUserData(user);
-  generateToken(res, user._id, user.tenantId);
+  const accessToken = generateToken(res, user._id, user.tenantId);
 
   const refreshToken = jwt.sign(
     { userId: user._id },
@@ -82,6 +82,7 @@ export const googleAuthUser = async (googleToken, res) => {
 
   return {
     userData,
+    accessToken,
     refreshToken,
     cookieOptions: createCookieOptions(),
   };
@@ -111,7 +112,7 @@ export const loginUser = async (body, res) => {
   }
 
   const userData = await generateUserData(user);
-  generateToken(res, user._id, user.tenantId);
+  const accessToken = generateToken(res, user._id, user.tenantId);
 
   const refreshToken = jwt.sign(
     { userId: user._id },
@@ -132,6 +133,7 @@ export const loginUser = async (body, res) => {
 
   return {
     userData,
+    accessToken,
     refreshToken,
     cookieOptions: createCookieOptions(),
   };

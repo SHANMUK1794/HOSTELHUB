@@ -2,8 +2,8 @@ import * as authService from "./auth.service.js";
 
 export const googleLogin = async (req, res) => {
   try {
-    const { token } = req.body; 
-    const { userData, refreshToken, cookieOptions } = await authService.googleAuthUser(token, res);
+    const { token } = req.body;
+    const { userData, accessToken, refreshToken, cookieOptions } = await authService.googleAuthUser(token, res);
 
     return res
       .cookie("refreshToken", refreshToken, cookieOptions)
@@ -12,7 +12,7 @@ export const googleLogin = async (req, res) => {
         success: true,
         message: "Google login successful",
         user: userData,
-        RefreshToken: refreshToken,
+        RefreshToken: accessToken, // frontend stores this as the auth token
       });
   } catch (error) {
     console.error("Google Auth Error:", error);
@@ -23,7 +23,7 @@ export const googleLogin = async (req, res) => {
 export const login = async (req, res) => {
   try {
     console.log(req.body);
-    const { userData, refreshToken, cookieOptions } =
+    const { userData, accessToken, refreshToken, cookieOptions } =
       await authService.loginUser(req.body, res);
 
     return res
@@ -33,7 +33,7 @@ export const login = async (req, res) => {
         success: true,
         message: "Login successful",
         user: userData,
-        RefreshToken: refreshToken,
+        RefreshToken: accessToken, // frontend stores this as the auth token
       });
   } catch (error) {
     console.error("Login error:", error);
