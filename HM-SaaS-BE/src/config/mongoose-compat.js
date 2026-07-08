@@ -357,12 +357,24 @@ class MongooseCompatModel {
   _translateQuery(query) {
     const castedQuery = this._castFields(query);
     const where = {};
+
+    // Per-model field name remaps (Mongoose field → Prisma field)
+    const FIELD_REMAP = {
+      vacationForm: { vacatedate: "checkOutDate", applicationname: "userId" },
+    };
+    const remap = FIELD_REMAP[this.modelName] || {};
+
     for (const key in castedQuery) {
       let val = castedQuery[key];
       let cleanKey = key === "_id" ? "id" : key;
 
       if (this.modelName === "tenant" && cleanKey === "owner") {
         cleanKey = "ownerId";
+      }
+
+      // Apply per-model field remap
+      if (remap[cleanKey]) {
+        cleanKey = remap[cleanKey];
       }
 
       if (val === null || val === undefined) {
