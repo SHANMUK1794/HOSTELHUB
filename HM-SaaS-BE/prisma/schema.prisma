@@ -151,24 +151,43 @@ model Subscription {
 }
 
 model Settings {
-  id                     String   @id @default(uuid())
-  tenantId               String   @unique
-  branchName             String
-  businessName           String?
-  businessLogo           String?
-  businessAddress        String?
-  businessGST            String?
-  businessPhone          String?
-  businessEmail          String?
-  upiId                  String?
-  rentDueDay             Int      @default(5)
-  dueGracePeriod         Int      @default(3)
-  automaticDueGeneration Boolean  @default(true)
-  taxEnabled             Boolean  @default(false)
-  taxRate                Float    @default(0)
-  maintenanceCharge      Float    @default(0)
-  createdAt              DateTime @default(now())
-  updatedAt              DateTime @updatedAt
+  id                          String   @id @default(uuid())
+  tenantId                    String   @unique
+  branchName                  String   @default("Common")
+  businessName                String?
+  businessLogo                String?
+  businessAddress             String?
+  businessGST                 String?
+  businessPhone               String?
+  businessEmail               String?
+  upiId                       String?
+  rentDueDay                  Int      @default(5)
+  dueGracePeriod              Int      @default(3)
+  automaticDueGeneration      Boolean  @default(true)
+  taxEnabled                  Boolean  @default(false)
+  taxRate                     Float    @default(0)
+  maintenanceCharge           Float    @default(0)
+  ebRatePerUnit               Float    @default(10)
+  registrationFee             Float    @default(500)
+  ebDeposit                   Float    @default(1000)
+  securityDeposit             Float    @default(2000)
+  workingDaysPerMonth         Int      @default(30)
+  workingHoursPerDay          Int      @default(8)
+  overtimeMultiplier          Float    @default(1)
+  casualLeavePerMonth         Int      @default(2)
+  waEnableRegistration        Boolean  @default(false)
+  waEnableBirthday            Boolean  @default(false)
+  waEnableRentReminder        Boolean  @default(false)
+  waEnableRentLastDay         Boolean  @default(false)
+  waEnablePaymentConfirmation Boolean  @default(false)
+  waEnableComplaintAck        Boolean  @default(false)
+  waEnableComplaintResolved   Boolean  @default(false)
+  waEnablePayroll             Boolean  @default(false)
+  useDedicatedWA              Boolean  @default(false)
+  customWAToken               String   @default("")
+  customWAPhoneId             String   @default("")
+  createdAt                   DateTime @default(now())
+  updatedAt                   DateTime @updatedAt
 }
 
 model Notification {
