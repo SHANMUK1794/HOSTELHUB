@@ -20,10 +20,19 @@ const ProtectedRoute = ({ children, allowedRoles = [] }) => {
 
   // Get user role from Redux or localStorage safely
   const role = user?.role?.toLowerCase() || localUser?.role?.toLowerCase();
+  const tenantId = user?.tenantId || localUser?.tenantId;
+
   // 2. If user is not logged in
   if (!token) {
     // Pass the attempted location in state so you can redirect them back after login
     return <Navigate to="/login" state={{ from: location }} replace />;
+  }
+
+  // If user is admin/owner but has no tenant, redirect to onboard
+  if (role === "admin" && !tenantId) {
+    if (location.pathname !== "/onboard" && location.pathname !== "/subscription") {
+      return <Navigate to="/onboard" replace />;
+    }
   }
 
   // 3. If route is restricted and user lacks the required role

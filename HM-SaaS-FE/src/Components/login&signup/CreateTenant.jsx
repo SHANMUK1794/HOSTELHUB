@@ -29,6 +29,17 @@ const CreateTenant = () => {
         payload,
       );
       if (response.data.success) {
+        const tenant = response.data.data;
+        const storedUser = localStorage.getItem("user");
+        if (storedUser) {
+          try {
+            const userObj = JSON.parse(storedUser);
+            userObj.tenantId = tenant.id || tenant._id;
+            localStorage.setItem("user", JSON.stringify(userObj));
+          } catch (e) {
+            console.error("Error updating user tenantId in localStorage", e);
+          }
+        }
         toast.success("Organization created successfully!");
         window.location.href = "/Dashboard";
       }

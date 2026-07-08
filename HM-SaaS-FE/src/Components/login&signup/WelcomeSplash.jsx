@@ -16,7 +16,12 @@ const WelcomeSplash = () => {
       } else if (user?.role === "Staff") {
         navigate("/StaffDashboard", { replace: true });
       } else {
-        navigate("/Dashboard", { replace: true });
+        // Admin / Owner
+        if (!user?.tenantId) {
+          navigate("/onboard", { replace: true });
+        } else {
+          navigate("/Dashboard", { replace: true });
+        }
       }
     }, 2000);
 
