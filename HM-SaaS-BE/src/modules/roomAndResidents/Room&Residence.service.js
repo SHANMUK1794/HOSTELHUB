@@ -89,7 +89,7 @@ export const createRoom = async (user, body, tenantId) => {
     throw createError("All fields including Floor are required.", 400);
   }
 
-  const existingRoom = await repo.findRoomByBranchAndNoRepo(tenantId, branchName, RoomNo);
+  const existingRoom = await repo.findRoomByBranchAndNoRepo(tenantId, branchName, Floor, RoomNo);
   if (existingRoom) {
     throw createError("Room number already exists.", 400);
   }

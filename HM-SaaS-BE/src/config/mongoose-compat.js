@@ -53,13 +53,87 @@ class MongooseCompatModel {
     this.client = prisma[this.modelName];
   }
 
+  _castFields(data) {
+    if (!data || typeof data !== "object") return data;
+    if (!this.schema || !this.schema.definition) return data;
+
+    const def = this.schema.definition;
+    const clean = Array.isArray(data) ? data.map(item => this._castFields(item)) : { ...data };
+
+    if (!Array.isArray(clean)) {
+      for (const key in clean) {
+        const schemaField = def[key];
+        if (!schemaField) continue;
+
+        let targetType = null;
+        if (schemaField === Number || schemaField.type === Number) {
+          targetType = "number";
+        } else if (schemaField === Boolean || schemaField.type === Boolean) {
+          targetType = "boolean";
+        } else if (schemaField === Date || schemaField.type === Date) {
+          targetType = "date";
+        } else if (schemaField === String || schemaField.type === String) {
+          targetType = "string";
+        }
+
+        if (targetType) {
+          const val = clean[key];
+          if (val !== null && val !== undefined) {
+            if (typeof val === "object") {
+              for (const op of ["$gt", "$lt", "$gte", "$lte", "$ne", "$eq", "$in", "$nin"]) {
+                if (val[op] !== undefined) {
+                  if (Array.isArray(val[op])) {
+                    val[op] = val[op].map(x => {
+                      if (x === null || x === undefined) return x;
+                      if (targetType === "number") {
+                        const num = Number(x);
+                        return isNaN(num) ? x : num;
+                      }
+                      if (targetType === "boolean") {
+                        return typeof x === "string" ? (x.toLowerCase() === "true" || x === "1") : Boolean(x);
+                      }
+                      if (targetType === "date") return new Date(x);
+                      return String(x);
+                    });
+                  } else {
+                    if (targetType === "number") {
+                      const num = Number(val[op]);
+                      if (!isNaN(num)) val[op] = num;
+                    } else if (targetType === "boolean") {
+                      val[op] = typeof val[op] === "string" ? (val[op].toLowerCase() === "true" || val[op] === "1") : Boolean(val[op]);
+                    } else if (targetType === "date") {
+                      val[op] = new Date(val[op]);
+                    } else if (targetType === "string") {
+                      val[op] = String(val[op]);
+                    }
+                  }
+                }
+              }
+            } else {
+              if (targetType === "number") {
+                const num = Number(val);
+                if (!isNaN(num)) clean[key] = num;
+              } else if (targetType === "boolean") {
+                clean[key] = typeof val === "string" ? (val.toLowerCase() === "true" || val === "1") : Boolean(val);
+              } else if (targetType === "date") {
+                clean[key] = new Date(val);
+              } else if (targetType === "string") {
+                clean[key] = String(val);
+              }
+            }
+          }
+        }
+      }
+    }
+    return clean;
+  }
 
   // Model.create(data)
   async create(data) {
     if (Array.isArray(data)) {
       return await Promise.all(data.map(item => this.create(item)));
     }
-    const cleanData = { ...data };
+    let cleanData = this._castFields(data);
     if (cleanData._id) {
       cleanData.id = cleanData._id.toString();
       delete cleanData._id;
@@ -281,9 +355,10 @@ class MongooseCompatModel {
   }
 
   _translateQuery(query) {
+    const castedQuery = this._castFields(query);
     const where = {};
-    for (const key in query) {
-      let val = query[key];
+    for (const key in castedQuery) {
+      let val = castedQuery[key];
       let cleanKey = key === "_id" ? "id" : key;
 
       if (this.modelName === "tenant" && cleanKey === "owner") {
@@ -340,6 +415,8 @@ class MongooseCompatModel {
       cleanUpdate.ownerId = cleanUpdate.owner.toString();
       delete cleanUpdate.owner;
     }
+
+    cleanUpdate = this._castFields(cleanUpdate);
     return cleanUpdate;
   }
 }
@@ -449,7 +526,10 @@ function wrapRecord(record, model) {
 
 const mongooseMock = {
   Schema: class {
-    constructor() {}
+    constructor(definition, options) {
+      this.definition = definition;
+      this.options = options;
+    }
     index() {}
     pre() {}
     set() {}
@@ -459,7 +539,14 @@ const mongooseMock = {
       };
     }
   },
-  model: (modelName) => new MongooseCompatModel(modelName),
+  model: (modelName, schema) => {
+    const instance = mongooseMock.models[modelName] || new MongooseCompatModel(modelName);
+    if (schema) {
+      instance.schema = schema;
+    }
+    mongooseMock.models[modelName] = instance;
+    return instance;
+  },
   models: {},
   Types: {
     ObjectId: class {
