@@ -55,14 +55,14 @@ const CreateTenant = () => {
     width: "100%",
     height: "48px",
     borderRadius: "10px",
-    border: "1px solid rgba(0,0,0,0.12)",
-    background:
-      "linear-gradient(to right, color-mix(in srgb, var(--theme-accent) 15%, white), var(--theme-card-bg))",
-    color: "var(--theme-primary-text)",
+    border: "1px solid rgba(255,255,255,0.09)",
+    background: "rgba(255,255,255,0.035)",
+    color: "#f1f5f9",
     padding: "0 16px",
     fontSize: "var(--theme-font-small)",
     fontFamily: "var(--theme-font-family-primary)",
     outline: "none",
+    transition: "all 0.18s ease",
   };
 
   const textareaStyle = {
@@ -205,12 +205,14 @@ const CreateTenant = () => {
                 }
                 required
                 style={inputStyle}
-                onFocus={(e) =>
-                  (e.target.style.borderColor = "var(--theme-accent)")
-                }
-                onBlur={(e) =>
-                  (e.target.style.borderColor = "rgba(0,0,0,0.12)")
-                }
+                onFocus={(e) => {
+                  e.target.style.borderColor = "rgba(59,130,246,0.55)";
+                  e.target.style.background = "rgba(255,255,255,0.06)";
+                }}
+                onBlur={(e) => {
+                  e.target.style.borderColor = "rgba(255,255,255,0.09)";
+                  e.target.style.background = "rgba(255,255,255,0.035)";
+                }}
               />
             </div>
 
@@ -232,12 +234,14 @@ const CreateTenant = () => {
                 }
                 required
                 style={inputStyle}
-                onFocus={(e) =>
-                  (e.target.style.borderColor = "var(--theme-accent)")
-                }
-                onBlur={(e) =>
-                  (e.target.style.borderColor = "rgba(0,0,0,0.12)")
-                }
+                onFocus={(e) => {
+                  e.target.style.borderColor = "rgba(59,130,246,0.55)";
+                  e.target.style.background = "rgba(255,255,255,0.06)";
+                }}
+                onBlur={(e) => {
+                  e.target.style.borderColor = "rgba(255,255,255,0.09)";
+                  e.target.style.background = "rgba(255,255,255,0.035)";
+                }}
               />
             </div>
 
@@ -261,12 +265,14 @@ const CreateTenant = () => {
                   setFormData({ ...formData, description: e.target.value })
                 }
                 style={textareaStyle}
-                onFocus={(e) =>
-                  (e.target.style.borderColor = "var(--theme-accent)")
-                }
-                onBlur={(e) =>
-                  (e.target.style.borderColor = "rgba(0,0,0,0.12)")
-                }
+                onFocus={(e) => {
+                  e.target.style.borderColor = "rgba(59,130,246,0.55)";
+                  e.target.style.background = "rgba(255,255,255,0.06)";
+                }}
+                onBlur={(e) => {
+                  e.target.style.borderColor = "rgba(255,255,255,0.09)";
+                  e.target.style.background = "rgba(255,255,255,0.035)";
+                }}
               />
             </div>
 
