@@ -64,6 +64,10 @@ class MongooseCompatModel {
       cleanData.id = cleanData._id.toString();
       delete cleanData._id;
     }
+    if (this.modelName === "tenant" && cleanData.owner) {
+      cleanData.ownerId = cleanData.owner.toString();
+      delete cleanData.owner;
+    }
     const created = await this.client.create({ data: cleanData });
     return wrapRecord(created, this);
   }
@@ -171,7 +175,18 @@ class MongooseCompatModel {
     return await this.client.updateMany({ where, data: cleanUpdate });
   }
 
-  // Model.aggregate(pipeline) — basic $match + $group with $sum support
+  // Model.distinct(field, query)
+  async distinct(field, query = {}) {
+    const where = this._translateQuery(query);
+    const records = await this.client.findMany({
+      where,
+      select: { [field]: true },
+    });
+    const values = records.map(r => r[field]);
+    return [...new Set(values)];
+  }
+
+  // Model.aggregate(pipeline) — basic $match + $group with $sum and field grouping support
   async aggregate(pipeline = []) {
     try {
       const matchStage = pipeline.find(s => s.$match)?.$match || {};
@@ -183,17 +198,7 @@ class MongooseCompatModel {
         return await this.client.findMany({ where });
       }
 
-      // Extract sum fields from $group
-      const sumFields = {};
-      for (const key of Object.keys(groupStage)) {
-        if (key === "_id") continue;
-        const val = groupStage[key];
-        if (val && val.$sum && typeof val.$sum === "string") {
-          sumFields[key] = { _sum: { [val.$sum.replace("$", "")]: true } };
-        }
-      }
-
-      // Check if grouping by a field (like year/month/branchName)
+      // Check if grouping by a field (like year/month/branchName/FoodType)
       const groupById = groupStage._id;
 
       if (groupById === null) {
@@ -222,8 +227,52 @@ class MongooseCompatModel {
         return [row];
       }
 
-      // Complex group by — fallback: return empty for complex pipelines
-      // (they will render 0 totals gracefully)
+      if (typeof groupById === "string" && groupById.startsWith("$")) {
+        const groupField = groupById.replace("$", "");
+        const countFields = [];
+        const sumFields = {};
+        for (const key of Object.keys(groupStage)) {
+          if (key === "_id") continue;
+          const val = groupStage[key];
+          if (val && val.$sum) {
+            if (val.$sum === 1) {
+              countFields.push(key);
+            } else if (typeof val.$sum === "string" && val.$sum.startsWith("$")) {
+              sumFields[key] = val.$sum.replace("$", "");
+            }
+          }
+        }
+
+        const groupByArgs = {
+          by: [groupField],
+          where,
+        };
+        if (countFields.length > 0) {
+          groupByArgs._count = { _all: true };
+        }
+        const sumKeys = Object.values(sumFields);
+        if (sumKeys.length > 0) {
+          groupByArgs._sum = {};
+          for (const sk of sumKeys) {
+            groupByArgs._sum[sk] = true;
+          }
+        }
+
+        const results = await this.client.groupBy(groupByArgs);
+
+        return results.map(r => {
+          const row = { _id: r[groupField] };
+          for (const key of countFields) {
+            row[key] = r._count?._all || 0;
+          }
+          for (const key of Object.keys(sumFields)) {
+            const sumField = sumFields[key];
+            row[key] = r._sum?.[sumField] || 0;
+          }
+          return row;
+        });
+      }
+
       return [];
     } catch (err) {
       console.warn(`[mongoose-compat] aggregate fallback for ${this.modelName}:`, err.message);
@@ -237,11 +286,24 @@ class MongooseCompatModel {
       let val = query[key];
       let cleanKey = key === "_id" ? "id" : key;
 
-      if (val && typeof val === "object" && !Array.isArray(val)) {
+      if (this.modelName === "tenant" && cleanKey === "owner") {
+        cleanKey = "ownerId";
+      }
+
+      if (val === null || val === undefined) {
+        where[cleanKey] = "null-dummy-value";
+        continue;
+      }
+
+      if (typeof val === "object" && !Array.isArray(val)) {
         if (val.$in) {
-          where[cleanKey] = { in: val.$in };
+          const cleanIn = val.$in.map(x => x === null || x === undefined ? "null-dummy-value" : x);
+          where[cleanKey] = { in: cleanIn };
+        } else if (val.$nin) {
+          const cleanNin = val.$nin.map(x => x === null || x === undefined ? "null-dummy-value" : x);
+          where[cleanKey] = { notIn: cleanNin };
         } else if (val.$ne) {
-          where[cleanKey] = { not: val.$ne };
+          where[cleanKey] = { not: val.$ne === null || val.$ne === undefined ? "null-dummy-value" : val.$ne };
         } else if (val.$gt) {
           where[cleanKey] = { gt: val.$gt };
         } else if (val.$lt) {
@@ -261,17 +323,24 @@ class MongooseCompatModel {
   }
 
   _translateUpdate(update) {
+    let cleanUpdate = update;
     if (update.$set) {
-      return update.$set;
-    }
-    if (update.$inc) {
+      cleanUpdate = { ...update.$set };
+    } else if (update.$inc) {
       const incrementData = {};
       for (const k in update.$inc) {
         incrementData[k] = { increment: update.$inc[k] };
       }
-      return incrementData;
+      cleanUpdate = incrementData;
+    } else {
+      cleanUpdate = { ...update };
     }
-    return update;
+
+    if (this.modelName === "tenant" && cleanUpdate.owner) {
+      cleanUpdate.ownerId = cleanUpdate.owner.toString();
+      delete cleanUpdate.owner;
+    }
+    return cleanUpdate;
   }
 }
 
@@ -326,6 +395,10 @@ function wrapRecord(record, model) {
       delete data._id;
       delete data.deletedinfo;  // Mongoose sub-document — not a Prisma field
       delete data.module;       // from deletedinfo spread
+      if (model.modelName === "tenant" && data.owner) {
+        data.ownerId = data.owner.toString();
+        delete data.owner;
+      }
       const updated = await model.client.update({
         where: { id },
         data,
@@ -358,6 +431,18 @@ function wrapRecord(record, model) {
     },
     enumerable: true,
   });
+
+  if (model.modelName === "tenant") {
+    Object.defineProperty(proxy, "owner", {
+      get: function() {
+        return this.ownerId;
+      },
+      set: function(val) {
+        this.ownerId = val;
+      },
+      enumerable: true,
+    });
+  }
 
   return proxy;
 }
