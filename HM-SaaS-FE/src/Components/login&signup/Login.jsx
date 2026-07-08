@@ -358,16 +358,7 @@ export const Login = () => {
           </p>
         </div>
 
-        {/* Google */}
-        <div style={{ marginBottom: "20px" }}>
-          <GoogleLogin
-            onSuccess={async (cr) => { try { await googleLogin(cr.credential); } catch (e) {} }}
-            onError={() => {}}
-            shape="rectangular" size="large" theme="filled_dark" text="continue_with" width="400"
-          />
-        </div>
 
-        <Divider text="or continue with email" />
 
         <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "16px", marginTop: "20px" }}>
           <PremiumInput
@@ -458,16 +449,7 @@ export const Signup = () => {
           </p>
         </div>
 
-        {/* Google */}
-        <div style={{ marginBottom: "20px" }}>
-          <GoogleLogin
-            onSuccess={async (cr) => { try { await googleLogin(cr.credential); } catch (e) {} }}
-            onError={() => {}}
-            shape="rectangular" size="large" theme="filled_dark" text="continue_with" width="400"
-          />
-        </div>
 
-        <Divider text="or sign up with email" />
 
         <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "16px", marginTop: "20px" }}>
           <PremiumInput
