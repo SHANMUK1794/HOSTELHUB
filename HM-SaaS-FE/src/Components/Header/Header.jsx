@@ -102,6 +102,14 @@ const Header = () => {
         }
       } catch (err) {
         console.error("Failed to fetch tenant", err);
+        if (
+          userRole?.toLowerCase() === "admin" &&
+          (err.response?.status === 404 || err.response?.status === 403)
+        ) {
+          if (window.location.pathname !== "/onboard" && window.location.pathname !== "/subscription") {
+            window.location.href = "/onboard";
+          }
+        }
       }
     };
     if (userRole) fetchTenant();

@@ -36,10 +36,15 @@ axiosInstance2.interceptors.request.use((config) => {
 const tenantInterceptor = (error) => {
   if (
     error.response &&
-    error.response.status === 403 &&
-    error.response.data?.message?.includes("No organization associated")
+    (error.response.status === 403 || error.response.status === 404) &&
+    (error.response.data?.message?.includes("No organization associated") ||
+     error.response.data?.message?.includes("No tenant associated") ||
+     error.response.data?.message?.includes("Tenant not found") ||
+     error.response.data?.error?.includes("No organization associated") ||
+     error.response.data?.error?.includes("No tenant associated") ||
+     error.response.data?.error?.includes("Tenant not found"))
   ) {
-    if (window.location.pathname !== "/onboard") {
+    if (window.location.pathname !== "/onboard" && window.location.pathname !== "/subscription") {
       window.location.href = "/onboard";
     }
   }
