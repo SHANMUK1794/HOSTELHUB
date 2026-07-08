@@ -55,6 +55,7 @@ export const createTenant = async (userId, body) => {
   // their Centralized WhatsApp configuration!
   await Settings.create({
     tenantId: tenant._id,
+    branchName: sanitizedBranches[0] || "Common",
   });
 
   // 3. Update the user's tenantId
